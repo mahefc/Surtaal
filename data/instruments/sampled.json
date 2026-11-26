@@ -1,0 +1,2981 @@
+{
+  "version": 1,
+  "license_note": "Recorded samples from VSCO 2 Community Edition by Sam Gossner, released under CC0 1.0 (public domain dedication). https://github.com/sgossner/VSCO-2-CE Salamander Grand Piano by Alexander Holm, CC-BY 3.0 (https://github.com/sfzinstruments/SalamanderGrandPiano). Salamander Grand Piano by Alexander Holm, CC-BY 3.0 (https://github.com/sfzinstruments/SalamanderGrandPiano).",
+  "instruments": [
+    {
+      "id": "violins",
+      "name": "Violin Section",
+      "category": "Orchestra",
+      "family": "String section",
+      "synth": "sampler",
+      "color": "#9AA8FF",
+      "start_midi": 57,
+      "range": [
+        39,
+        80
+      ],
+      "description": "Recorded violin section, sustained with vibrato. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 43,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_G2_v1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_A2_v1.wav"
+          },
+          {
+            "midi": 47,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_B2_v1.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_D3_v1.wav"
+          },
+          {
+            "midi": 54,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_F#3_v1.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_A3_v1.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_C4_v1.wav"
+          },
+          {
+            "midi": 64,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_E4_v1.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_G4_v1.wav"
+          },
+          {
+            "midi": 71,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_B4_v1.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 0,
+            "file": "res://assets/samples/violins/VlnEns_susVib_D5_v1.wav"
+          },
+          {
+            "midi": 43,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_G2_v2.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_A2_v2.wav"
+          },
+          {
+            "midi": 47,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_B2_v2.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_D3_v2.wav"
+          },
+          {
+            "midi": 54,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_F#3_v2.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_A3_v2.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_C4_v2.wav"
+          },
+          {
+            "midi": 64,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_E4_v2.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_G4_v2.wav"
+          },
+          {
+            "midi": 71,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_B4_v2.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 1,
+            "file": "res://assets/samples/violins/VlnEns_susVib_D5_v2.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.7
+      }
+    },
+    {
+      "id": "cellos",
+      "name": "Cello Section",
+      "category": "Orchestra",
+      "family": "String section",
+      "synth": "sampler",
+      "color": "#7C8CF0",
+      "start_midi": 45,
+      "range": [
+        20,
+        71
+      ],
+      "description": "Recorded cello section, sustained with vibrato. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 24,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_C1_v1_1.wav"
+          },
+          {
+            "midi": 28,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_E1_v1_1.wav"
+          },
+          {
+            "midi": 31,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_G1_v1_1.wav"
+          },
+          {
+            "midi": 35,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_B1_v1_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_D2_v1_1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_F2_v1_1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_A2_v1_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_C3_v1_1.wav"
+          },
+          {
+            "midi": 52,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_E3_v1_1.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_G3_v1_1.wav"
+          },
+          {
+            "midi": 59,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_B3_v1_1.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_D4_v1_1.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 0,
+            "file": "res://assets/samples/cellos/susvib_F4_v1_1.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_C1_v3_1.wav"
+          },
+          {
+            "midi": 28,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_E1_v3_1.wav"
+          },
+          {
+            "midi": 31,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_G1_v3_1.wav"
+          },
+          {
+            "midi": 35,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_B1_v3_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_D2_v3_1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_F2_v3_1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_A2_v3_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_C3_v3_1.wav"
+          },
+          {
+            "midi": 52,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_E3_v3_1.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_G3_v3_1.wav"
+          },
+          {
+            "midi": 59,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_B3_v3_1.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_D4_v3_1.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 1,
+            "file": "res://assets/samples/cellos/susvib_F4_v3_1.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.7
+      }
+    },
+    {
+      "id": "horn",
+      "name": "French Horn",
+      "category": "Orchestra",
+      "family": "Brass",
+      "synth": "sampler",
+      "color": "#E8B04A",
+      "start_midi": 38,
+      "range": [
+        17,
+        71
+      ],
+      "description": "Recorded French horn, sustained. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 21,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_A0_v1_1.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_C1_v1_1.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_D#1_v1_1.wav"
+          },
+          {
+            "midi": 31,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_G1_v1_1.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_A#1_v1_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_D2_v1_1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_F2_v1_1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_A2_v1_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_C3_v1_1.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_D4_v1_1.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 0,
+            "file": "res://assets/samples/horn/MOHorn_sus_F4_v1_1.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 1,
+            "file": "res://assets/samples/horn/MOHorn_sus_C1_v2_1.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 1,
+            "file": "res://assets/samples/horn/MOHorn_sus_D#1_v2_1.wav"
+          },
+          {
+            "midi": 31,
+            "vel": 1,
+            "file": "res://assets/samples/horn/MOHorn_sus_G1_v2_1.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 1,
+            "file": "res://assets/samples/horn/MOHorn_sus_A#1_v2_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 1,
+            "file": "res://assets/samples/horn/MOHorn_sus_D2_v2_1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 1,
+            "file": "res://assets/samples/horn/MOHorn_sus_F2_v2_1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 1,
+            "file": "res://assets/samples/horn/MOHorn_sus_A2_v2_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 1,
+            "file": "res://assets/samples/horn/MOHorn_sus_C3_v2_1.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 2,
+            "file": "res://assets/samples/horn/MOHorn_sus_C1_v3_1.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 2,
+            "file": "res://assets/samples/horn/MOHorn_sus_D#1_v3_1.wav"
+          },
+          {
+            "midi": 31,
+            "vel": 2,
+            "file": "res://assets/samples/horn/MOHorn_sus_G1_v3_1.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 2,
+            "file": "res://assets/samples/horn/MOHorn_sus_A#1_v3_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 2,
+            "file": "res://assets/samples/horn/MOHorn_sus_D2_v3_1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 2,
+            "file": "res://assets/samples/horn/MOHorn_sus_F2_v3_1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 2,
+            "file": "res://assets/samples/horn/MOHorn_sus_A2_v3_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 2,
+            "file": "res://assets/samples/horn/MOHorn_sus_C3_v3_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 3,
+            "file": "res://assets/samples/horn/MOHorn_sus_D2_v4_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 3,
+            "file": "res://assets/samples/horn/MOHorn_sus_C3_v4_1.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.45
+      }
+    },
+    {
+      "id": "trumpet",
+      "name": "Trumpet",
+      "category": "Orchestra",
+      "family": "Brass",
+      "synth": "sampler",
+      "color": "#F2C75C",
+      "start_midi": 55,
+      "range": [
+        37,
+        78
+      ],
+      "description": "Recorded trumpet, sustained with vibrato. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 41,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_F2_v1_rr1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_A2_v1_rr1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_C3_v1_rr1.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_D#3_v1_rr1.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_F3_v1_rr1.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_G3_v1_rr1.wav"
+          },
+          {
+            "midi": 58,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_A#3_v1_rr1.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_D4_v1_rr1.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_F4_v1_rr1.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_A4_v1_rr1.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 0,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_C5_v1_rr1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_F2_v2_rr1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_A2_v2_rr1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_C3_v2_rr1.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_D#3_v2_rr1.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_F3_v2_rr1.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_G3_v2_rr1.wav"
+          },
+          {
+            "midi": 58,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_A#3_v2_rr1.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_D4_v2_rr1.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_F4_v2_rr1.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_A4_v2_rr1.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 1,
+            "file": "res://assets/samples/trumpet/Sum_SHTrumpet_susvib_C5_v2_rr1.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.35
+      }
+    },
+    {
+      "id": "tuba",
+      "name": "Tuba",
+      "category": "Orchestra",
+      "family": "Brass",
+      "synth": "sampler",
+      "color": "#D9902F",
+      "start_midi": 34,
+      "range": [
+        13,
+        56
+      ],
+      "description": "Recorded tuba: the deep foundation of a brass section. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 17,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_F0_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 22,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#0_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_D#1_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 29,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_F1_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#1_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_D2_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_F2_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#2_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 0,
+            "file": "res://assets/samples/tuba/Tuba3_sus_D3_v1_rr1_Mid.wav"
+          },
+          {
+            "midi": 22,
+            "vel": 1,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#0_v2_rr1_Mid.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 1,
+            "file": "res://assets/samples/tuba/Tuba3_sus_D#1_v2_rr1_Mid.wav"
+          },
+          {
+            "midi": 29,
+            "vel": 1,
+            "file": "res://assets/samples/tuba/Tuba3_sus_F1_v2_rr1_Mid.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 1,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#1_v2_rr1_Mid.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 1,
+            "file": "res://assets/samples/tuba/Tuba3_sus_D2_v2_rr1_Mid.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 1,
+            "file": "res://assets/samples/tuba/Tuba3_sus_F2_v2_rr1_Mid.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 1,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#2_v2_rr1_Mid.wav"
+          },
+          {
+            "midi": 22,
+            "vel": 2,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#0_v3_rr1_Mid.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 2,
+            "file": "res://assets/samples/tuba/Tuba3_sus_D#1_v3_rr1_Mid.wav"
+          },
+          {
+            "midi": 29,
+            "vel": 2,
+            "file": "res://assets/samples/tuba/Tuba3_sus_F1_v3_rr1_Mid.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 2,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#1_v3_rr1_Mid.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 2,
+            "file": "res://assets/samples/tuba/Tuba3_sus_D2_v3_rr1_Mid.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 2,
+            "file": "res://assets/samples/tuba/Tuba3_sus_F2_v3_rr1_Mid.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 2,
+            "file": "res://assets/samples/tuba/Tuba3_sus_A#2_v3_rr1_Mid.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.45
+      }
+    },
+    {
+      "id": "flute",
+      "name": "Flute",
+      "category": "Orchestra",
+      "family": "Woodwind",
+      "synth": "sampler",
+      "color": "#7FD1C7",
+      "start_midi": 69,
+      "range": [
+        44,
+        90
+      ],
+      "description": "Recorded concert flute, sustained with vibrato. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_C3_v1_1.wav"
+          },
+          {
+            "midi": 52,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_E3_v1_1.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_A3_v1_1.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_C4_v1_1.wav"
+          },
+          {
+            "midi": 64,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_E4_v1_1.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_A4_v1_1.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_C5_v1_1.wav"
+          },
+          {
+            "midi": 76,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_E5_v1_1.wav"
+          },
+          {
+            "midi": 81,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_A5_v1_1.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 0,
+            "file": "res://assets/samples/flute/LDFlute_susvib_C6_v1_1.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.3
+      }
+    },
+    {
+      "id": "grand_piano",
+      "name": "Acoustic Piano",
+      "category": "Keys",
+      "family": "Piano",
+      "synth": "sampler",
+      "color": "#D8D2C4",
+      "start_midi": 67,
+      "range": [
+        20,
+        109
+      ],
+      "description": "Recorded upright piano, two dynamics. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 24,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_C1_pp_RR1.wav"
+          },
+          {
+            "midi": 31,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_G1_mf_RR1.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_C2_mf_RR1.wav"
+          },
+          {
+            "midi": 43,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_G2_mf_RR1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_C3_mf_RR1.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_G3_mf_RR1.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_C4_mf_RR1.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_G4_mf_RR1.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_C5_mf_RR1.wav"
+          },
+          {
+            "midi": 79,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_G5_mf_RR1.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_C6_mf_RR1.wav"
+          },
+          {
+            "midi": 91,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_G6_mf_RR1.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_C7_mf_RR1.wav"
+          },
+          {
+            "midi": 103,
+            "vel": 0,
+            "file": "res://assets/samples/grand_piano/UR1_G7_mf_RR1.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_C1_f_RR1.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_C2_f_RR1.wav"
+          },
+          {
+            "midi": 43,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_G2_f_RR1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_C3_f_RR1.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_G3_f_RR1.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_C4_f_RR1.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_G4_f_RR1.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_C5_f_RR1.wav"
+          },
+          {
+            "midi": 79,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_G5_f_RR1.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_C6_f_RR1.wav"
+          },
+          {
+            "midi": 91,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_G6_f_RR1.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_C7_f_RR1.wav"
+          },
+          {
+            "midi": 103,
+            "vel": 1,
+            "file": "res://assets/samples/grand_piano/UR1_G7_f_RR1.wav"
+          }
+        ],
+        "loop": false,
+        "release": 0.5
+      }
+    },
+    {
+      "id": "harp_real",
+      "name": "Concert Harp",
+      "category": "Orchestra",
+      "family": "Plucked string",
+      "synth": "sampler",
+      "color": "#E8C9F0",
+      "start_midi": 65,
+      "range": [
+        24,
+        107
+      ],
+      "description": "Recorded concert harp. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 28,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_E1_f.wav"
+          },
+          {
+            "midi": 31,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_G1_mp.wav"
+          },
+          {
+            "midi": 35,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_B1_mf.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_D2_mf.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_F2_mf.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_A2_mf.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_C3_mf.wav"
+          },
+          {
+            "midi": 52,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_E3_mf.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_G3_mf.wav"
+          },
+          {
+            "midi": 59,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_B3_mf.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_D4_mf.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_F4_mf.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_A4_mf.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_C5_mf.wav"
+          },
+          {
+            "midi": 76,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_E5_mf.wav"
+          },
+          {
+            "midi": 79,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_G5_mf.wav"
+          },
+          {
+            "midi": 83,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_B5_mf.wav"
+          },
+          {
+            "midi": 86,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_D6_mf.wav"
+          },
+          {
+            "midi": 89,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_F6_mf.wav"
+          },
+          {
+            "midi": 93,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_A6_mf.wav"
+          },
+          {
+            "midi": 95,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_B6_mf.wav"
+          },
+          {
+            "midi": 98,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_D7_f.wav"
+          },
+          {
+            "midi": 101,
+            "vel": 0,
+            "file": "res://assets/samples/harp_real/KSHarp_F7_f.wav"
+          }
+        ],
+        "loop": false,
+        "release": 0.8
+      }
+    },
+    {
+      "id": "solo_violin",
+      "name": "Solo Violin",
+      "category": "Orchestra",
+      "family": "Solo string",
+      "synth": "sampler",
+      "color": "#B8C4FF",
+      "start_midi": 76,
+      "range": [
+        51,
+        102
+      ],
+      "description": "Recorded solo violin, arco with vibrato. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 55,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_G3_f.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_A3_f.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_C4_f.wav"
+          },
+          {
+            "midi": 64,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_E4_f.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_G4_f.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_A4_f.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_C5_f.wav"
+          },
+          {
+            "midi": 76,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_E5_f.wav"
+          },
+          {
+            "midi": 79,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_G5_f.wav"
+          },
+          {
+            "midi": 81,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_A5_f.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_C6_f.wav"
+          },
+          {
+            "midi": 88,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_E6_f.wav"
+          },
+          {
+            "midi": 91,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_G6_f.wav"
+          },
+          {
+            "midi": 93,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_A6_f.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 0,
+            "file": "res://assets/samples/solo_violin/LLVln_ArcoVib_C7_f.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.5
+      }
+    },
+    {
+      "id": "violas",
+      "name": "Viola Section",
+      "category": "Orchestra",
+      "family": "String section",
+      "synth": "sampler",
+      "color": "#8C9CF5",
+      "start_midi": 53,
+      "range": [
+        32,
+        80
+      ],
+      "description": "Recorded viola section, sustained with vibrato. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 36,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_C2_v1_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_D2_v1_1.wav"
+          },
+          {
+            "midi": 40,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_E2_v1_1.wav"
+          },
+          {
+            "midi": 43,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_G2_v1_1.wav"
+          },
+          {
+            "midi": 47,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_B2_v1_1.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_D3_v1_1.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_F3_v1_1.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_A3_v1_1.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_C4_v1_1.wav"
+          },
+          {
+            "midi": 64,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_E4_v1_1.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_G4_v1_1.wav"
+          },
+          {
+            "midi": 71,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_B4_v1_1.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 0,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_D5_v1_1.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_C2_v2_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_D2_v2_1.wav"
+          },
+          {
+            "midi": 40,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_E2_v2_1.wav"
+          },
+          {
+            "midi": 43,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_G2_v2_1.wav"
+          },
+          {
+            "midi": 47,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_B2_v2_1.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_D3_v2_1.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_F3_v2_1.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_A3_v2_1.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_C4_v2_1.wav"
+          },
+          {
+            "midi": 64,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_E4_v2_1.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_G4_v2_1.wav"
+          },
+          {
+            "midi": 71,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_B4_v2_1.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 1,
+            "file": "res://assets/samples/violas/ViolaEns_susvib_D5_v2_1.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.7
+      }
+    },
+    {
+      "id": "contrabass",
+      "name": "Solo Double Bass",
+      "category": "Orchestra",
+      "family": "Solo string",
+      "synth": "sampler",
+      "color": "#6C78D8",
+      "start_midi": 30,
+      "range": [
+        14,
+        53
+      ],
+      "description": "Recorded solo double bass, sustained. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 18,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_F#0_v1_rr1.wav"
+          },
+          {
+            "midi": 19,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_G0_v1_rr1.wav"
+          },
+          {
+            "midi": 22,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_A#0_v1_rr1.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_C1_v1_rr1.wav"
+          },
+          {
+            "midi": 26,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_D1_v1_rr1.wav"
+          },
+          {
+            "midi": 28,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_E1_v1_rr1.wav"
+          },
+          {
+            "midi": 30,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_F#1_v1_rr1.wav"
+          },
+          {
+            "midi": 32,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_G#1_v1_rr1.wav"
+          },
+          {
+            "midi": 33,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_A1_v1_rr1.wav"
+          },
+          {
+            "midi": 37,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_C#2_v1_rr1.wav"
+          },
+          {
+            "midi": 40,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_E2_v1_rr1.wav"
+          },
+          {
+            "midi": 44,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_G#2_v1_rr1.wav"
+          },
+          {
+            "midi": 47,
+            "vel": 0,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_B2_v1_rr1.wav"
+          },
+          {
+            "midi": 18,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_F#0_v3_rr1.wav"
+          },
+          {
+            "midi": 19,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_G0_v3_rr1.wav"
+          },
+          {
+            "midi": 22,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_A#0_v3_rr1.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_C1_v3_rr1.wav"
+          },
+          {
+            "midi": 26,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_D1_v3_rr1.wav"
+          },
+          {
+            "midi": 28,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_E1_v3_rr1.wav"
+          },
+          {
+            "midi": 30,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_F#1_v3_rr1.wav"
+          },
+          {
+            "midi": 32,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_G#1_v3_rr1.wav"
+          },
+          {
+            "midi": 33,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_A1_v3_rr1.wav"
+          },
+          {
+            "midi": 37,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_C#2_v3_rr1.wav"
+          },
+          {
+            "midi": 40,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_E2_v3_rr1.wav"
+          },
+          {
+            "midi": 44,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_G#2_v3_rr1.wav"
+          },
+          {
+            "midi": 47,
+            "vel": 1,
+            "file": "res://assets/samples/contrabass/BKCtbss_SusVib_B2_v3_rr1.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.6
+      }
+    },
+    {
+      "id": "trombone",
+      "name": "Tenor Trombone",
+      "category": "Orchestra",
+      "family": "Brass",
+      "synth": "sampler",
+      "color": "#E6A23C",
+      "start_midi": 38,
+      "range": [
+        18,
+        59
+      ],
+      "description": "Recorded tenor trombone, sustained. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 22,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_A#0_v1_1.wav"
+          },
+          {
+            "midi": 25,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_C#1_v1_1.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D#1_v1_1.wav"
+          },
+          {
+            "midi": 29,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F1_v1_1.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_A#1_v1_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D2_v1_1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F2_v1_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_C3_v1_1.wav"
+          },
+          {
+            "midi": 49,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_C#3_v1_1.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D#3_v1_1.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 0,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F3_v1_1.wav"
+          },
+          {
+            "midi": 22,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_A#0_v2_1.wav"
+          },
+          {
+            "midi": 25,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_C#1_v2_1.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D#1_v2_1.wav"
+          },
+          {
+            "midi": 29,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F1_v2_1.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_A#1_v2_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D2_v2_1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F2_v2_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_C3_v2_1.wav"
+          },
+          {
+            "midi": 49,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_C#3_v2_1.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D#3_v2_1.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 1,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F3_v2_1.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D#1_v3_1.wav"
+          },
+          {
+            "midi": 29,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F1_v3_1.wav"
+          },
+          {
+            "midi": 34,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_A#1_v3_1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D2_v3_1.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F2_v3_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_C3_v3_1.wav"
+          },
+          {
+            "midi": 49,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_C#3_v3_1.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_D#3_v3_1.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 2,
+            "file": "res://assets/samples/trombone/tenortbn_sus_F3_v3_1.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.4
+      }
+    },
+    {
+      "id": "oboe",
+      "name": "Oboe",
+      "category": "Orchestra",
+      "family": "Woodwind",
+      "synth": "sampler",
+      "color": "#79C9A8",
+      "start_midi": 62,
+      "range": [
+        42,
+        83
+      ],
+      "description": "Recorded oboe with vibrato. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 46,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_A#2_v1_Main.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_D3_v1_Main.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_F3_v1_Main.wav"
+          },
+          {
+            "midi": 58,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_A#3_v1_Main.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_D4_v1_Main.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_F4_v1_Main.wav"
+          },
+          {
+            "midi": 70,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_A#4_v1_Main.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_D5_v1_Main.wav"
+          },
+          {
+            "midi": 77,
+            "vel": 0,
+            "file": "res://assets/samples/oboe/Oboe_Vib_F5_v1_Main.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_A#2_v3_Main.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_D3_v3_Main.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_F3_v3_Main.wav"
+          },
+          {
+            "midi": 58,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_A#3_v3_Main.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_D4_v3_Main.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_F4_v3_Main.wav"
+          },
+          {
+            "midi": 70,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_A#4_v3_Main.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_D5_v3_Main.wav"
+          },
+          {
+            "midi": 77,
+            "vel": 1,
+            "file": "res://assets/samples/oboe/Oboe_Vib_F5_v3_Main.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.3
+      }
+    },
+    {
+      "id": "clarinet",
+      "name": "Clarinet",
+      "category": "Orchestra",
+      "family": "Woodwind",
+      "synth": "sampler",
+      "color": "#6FBFB0",
+      "start_midi": 58,
+      "range": [
+        34,
+        84
+      ],
+      "description": "Recorded clarinet, long sustain. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 38,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D2_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F2_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#2_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D3_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F3_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 58,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#3_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D4_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F4_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 70,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#4_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D5_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 78,
+            "vel": 0,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F#5_v1_rr1_sum.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D2_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F2_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#2_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D3_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F3_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 58,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#3_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D4_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F4_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 70,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#4_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D5_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 78,
+            "vel": 1,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F#5_v2_rr1_sum.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D2_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 41,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F2_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#2_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D3_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F3_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 58,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#3_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 62,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D4_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 65,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F4_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 70,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_A#4_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 74,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_D5_v3_rr1_sum.wav"
+          },
+          {
+            "midi": 78,
+            "vel": 2,
+            "file": "res://assets/samples/clarinet/DCClar_susLong_F#5_v3_rr1_sum.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.3
+      }
+    },
+    {
+      "id": "bassoon",
+      "name": "Bassoon",
+      "category": "Orchestra",
+      "family": "Woodwind",
+      "synth": "sampler",
+      "color": "#5FAF9A",
+      "start_midi": 48,
+      "range": [
+        27,
+        66
+      ],
+      "description": "Recorded bassoon with vibrato. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 31,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_G1_v1_1.wav"
+          },
+          {
+            "midi": 33,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_A1_v1_1.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_C2_v1_1.wav"
+          },
+          {
+            "midi": 43,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_G2_v1_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_C3_v1_1.wav"
+          },
+          {
+            "midi": 52,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_E3_v1_1.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_G3_v1_1.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_A3_v1_1.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/bassoon/PSBassoon_C4_v1_1.wav"
+          },
+          {
+            "midi": 31,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_G1_v2_1.wav"
+          },
+          {
+            "midi": 33,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_A1_v2_1.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_C2_v2_1.wav"
+          },
+          {
+            "midi": 43,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_G2_v2_1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_A2_v2_1.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_C3_v2_1.wav"
+          },
+          {
+            "midi": 52,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_E3_v2_1.wav"
+          },
+          {
+            "midi": 55,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_G3_v2_1.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_A3_v2_1.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 1,
+            "file": "res://assets/samples/bassoon/PSBassoon_C4_v2_1.wav"
+          }
+        ],
+        "loop": true,
+        "release": 0.35
+      }
+    },
+    {
+      "id": "marimba",
+      "name": "Marimba",
+      "category": "Orchestra",
+      "family": "Tuned percussion",
+      "synth": "sampler",
+      "color": "#E58B5A",
+      "start_midi": 60,
+      "range": [
+        25,
+        90
+      ],
+      "description": "Recorded marimba. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 29,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_F1_loud_01.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_C2_loud_01.wav"
+          },
+          {
+            "midi": 43,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_G2_loud_01.wav"
+          },
+          {
+            "midi": 47,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_B2_loud_01.wav"
+          },
+          {
+            "midi": 53,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_F3_loud_01.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_C4_loud_01.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_G4_loud_01.wav"
+          },
+          {
+            "midi": 71,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_B4_loud_01.wav"
+          },
+          {
+            "midi": 77,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_F5_loud_01.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 0,
+            "file": "res://assets/samples/marimba/Marimba_hit_Outrigger_C6_loud_01.wav"
+          }
+        ],
+        "loop": false,
+        "release": 0.4
+      }
+    },
+    {
+      "id": "glockenspiel",
+      "name": "Glockenspiel",
+      "category": "Orchestra",
+      "family": "Tuned percussion",
+      "synth": "sampler",
+      "color": "#BFE3FF",
+      "start_midi": 84,
+      "range": [
+        63,
+        102
+      ],
+      "description": "Recorded glockenspiel. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 67,
+            "vel": 0,
+            "file": "res://assets/samples/glockenspiel/glock_medium_G4.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 0,
+            "file": "res://assets/samples/glockenspiel/glock_medium_C5.wav"
+          },
+          {
+            "midi": 79,
+            "vel": 0,
+            "file": "res://assets/samples/glockenspiel/glock_medium_G5.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 0,
+            "file": "res://assets/samples/glockenspiel/glock_medium_C6.wav"
+          },
+          {
+            "midi": 91,
+            "vel": 0,
+            "file": "res://assets/samples/glockenspiel/glock_medium_G6.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 0,
+            "file": "res://assets/samples/glockenspiel/glock_medium_C7.wav"
+          }
+        ],
+        "loop": false,
+        "release": 0.6
+      }
+    },
+    {
+      "id": "xylophone",
+      "name": "Xylophone",
+      "category": "Orchestra",
+      "family": "Tuned percussion",
+      "synth": "sampler",
+      "color": "#F0B27A",
+      "start_midi": 79,
+      "range": [
+        51,
+        102
+      ],
+      "description": "Recorded xylophone. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 55,
+            "vel": 0,
+            "file": "res://assets/samples/xylophone/Xylo_Medium_G3_ff_01_far.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/xylophone/Xylo_Medium_C4_ff_01_far.wav"
+          },
+          {
+            "midi": 67,
+            "vel": 0,
+            "file": "res://assets/samples/xylophone/Xylo_Medium_G4_ff_01_far.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 0,
+            "file": "res://assets/samples/xylophone/Xylo_Medium_C5_ff_01_far.wav"
+          },
+          {
+            "midi": 79,
+            "vel": 0,
+            "file": "res://assets/samples/xylophone/Xylo_Medium_G5_ff_01_far.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 0,
+            "file": "res://assets/samples/xylophone/Xylo_Medium_C6_ff_01_far.wav"
+          },
+          {
+            "midi": 91,
+            "vel": 0,
+            "file": "res://assets/samples/xylophone/Xylo_Medium_G6_ff_01_far.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 0,
+            "file": "res://assets/samples/xylophone/Xylo_Medium_C7_ff_01_far.wav"
+          }
+        ],
+        "loop": false,
+        "release": 0.3
+      }
+    },
+    {
+      "id": "bassdrum",
+      "name": "Bass Drum",
+      "category": "Orchestra",
+      "family": "Percussion",
+      "synth": "sampler",
+      "color": "#FF5A5F",
+      "start_midi": 48,
+      "range": [
+        36,
+        60
+      ],
+      "description": "Concert bass drum hit. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/bassdrum/BDrumNewhit_v5_rr1_Sum.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true
+      }
+    },
+    {
+      "id": "snare_real",
+      "name": "Snare (orchestral)",
+      "category": "Orchestra",
+      "family": "Percussion",
+      "synth": "sampler",
+      "color": "#FFD93D",
+      "start_midi": 48,
+      "range": [
+        36,
+        60
+      ],
+      "description": "Orchestral snare hit. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/snare_real/Snare2-HitSN_v5_rr1_Sum.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true
+      }
+    },
+    {
+      "id": "gong",
+      "name": "Gong",
+      "category": "Orchestra",
+      "family": "Percussion",
+      "synth": "sampler",
+      "color": "#C9A24A",
+      "start_midi": 48,
+      "range": [
+        36,
+        60
+      ],
+      "description": "Large gong, mf. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/gong/gongHit_mf.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true
+      }
+    },
+    {
+      "id": "cymbal",
+      "name": "Crash Cymbal",
+      "category": "Orchestra",
+      "family": "Percussion",
+      "synth": "sampler",
+      "color": "#BFC9D4",
+      "start_midi": 48,
+      "range": [
+        36,
+        60
+      ],
+      "description": "Orchestral crash cymbal. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/cymbal/cymbal-crash1_mf_rr1.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true
+      }
+    },
+    {
+      "id": "conga",
+      "name": "Conga",
+      "category": "Orchestra",
+      "family": "Percussion",
+      "synth": "sampler",
+      "color": "#FF9266",
+      "start_midi": 48,
+      "range": [
+        36,
+        60
+      ],
+      "description": "Open conga hit. Real recording (VSCO 2 CE, CC0).",
+      "params": {
+        "samples": [
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/conga/Conga-HitN_v2_rr1_Sum.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true
+      }
+    },
+    {
+      "id": "salamander_grand",
+      "name": "Concert Grand (Salamander)",
+      "category": "Keys",
+      "family": "Piano",
+      "synth": "sampler",
+      "color": "#E9E4D8",
+      "start_midi": 60,
+      "range": [
+        17,
+        114
+      ],
+      "description": "Recorded Yamaha C5 concert grand with four velocity layers. Salamander Grand Piano by Alexander Holm, CC-BY 3.0 (https://github.com/sfzinstruments/SalamanderGrandPiano).",
+      "params": {
+        "samples": [
+          {
+            "midi": 21,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/A0v2.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/C1v2.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Ds1v2.wav"
+          },
+          {
+            "midi": 30,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Fs1v2.wav"
+          },
+          {
+            "midi": 33,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/A1v2.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/C2v2.wav"
+          },
+          {
+            "midi": 39,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Ds2v2.wav"
+          },
+          {
+            "midi": 42,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Fs2v2.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/A2v2.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/C3v2.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Ds3v2.wav"
+          },
+          {
+            "midi": 54,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Fs3v2.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/A3v2.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/C4v2.wav"
+          },
+          {
+            "midi": 63,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Ds4v2.wav"
+          },
+          {
+            "midi": 66,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Fs4v2.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/A4v2.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/C5v2.wav"
+          },
+          {
+            "midi": 75,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Ds5v2.wav"
+          },
+          {
+            "midi": 78,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Fs5v2.wav"
+          },
+          {
+            "midi": 81,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/A5v2.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/C6v2.wav"
+          },
+          {
+            "midi": 87,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Ds6v2.wav"
+          },
+          {
+            "midi": 90,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Fs6v2.wav"
+          },
+          {
+            "midi": 93,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/A6v2.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/C7v2.wav"
+          },
+          {
+            "midi": 99,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Ds7v2.wav"
+          },
+          {
+            "midi": 102,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/Fs7v2.wav"
+          },
+          {
+            "midi": 105,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/A7v2.wav"
+          },
+          {
+            "midi": 108,
+            "vel": 0,
+            "file": "res://assets/samples/salamander_grand/C8v2.wav"
+          },
+          {
+            "midi": 21,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/A0v6.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/C1v6.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Ds1v6.wav"
+          },
+          {
+            "midi": 30,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Fs1v6.wav"
+          },
+          {
+            "midi": 33,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/A1v6.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/C2v6.wav"
+          },
+          {
+            "midi": 39,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Ds2v6.wav"
+          },
+          {
+            "midi": 42,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Fs2v6.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/A2v6.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/C3v6.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Ds3v6.wav"
+          },
+          {
+            "midi": 54,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Fs3v6.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/A3v6.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/C4v6.wav"
+          },
+          {
+            "midi": 63,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Ds4v6.wav"
+          },
+          {
+            "midi": 66,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Fs4v6.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/A4v6.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/C5v6.wav"
+          },
+          {
+            "midi": 75,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Ds5v6.wav"
+          },
+          {
+            "midi": 78,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Fs5v6.wav"
+          },
+          {
+            "midi": 81,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/A5v6.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/C6v6.wav"
+          },
+          {
+            "midi": 87,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Ds6v6.wav"
+          },
+          {
+            "midi": 90,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Fs6v6.wav"
+          },
+          {
+            "midi": 93,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/A6v6.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/C7v6.wav"
+          },
+          {
+            "midi": 99,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Ds7v6.wav"
+          },
+          {
+            "midi": 102,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/Fs7v6.wav"
+          },
+          {
+            "midi": 105,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/A7v6.wav"
+          },
+          {
+            "midi": 108,
+            "vel": 1,
+            "file": "res://assets/samples/salamander_grand/C8v6.wav"
+          },
+          {
+            "midi": 21,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/A0v10.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/C1v10.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Ds1v10.wav"
+          },
+          {
+            "midi": 30,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Fs1v10.wav"
+          },
+          {
+            "midi": 33,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/A1v10.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/C2v10.wav"
+          },
+          {
+            "midi": 39,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Ds2v10.wav"
+          },
+          {
+            "midi": 42,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Fs2v10.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/A2v10.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/C3v10.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Ds3v10.wav"
+          },
+          {
+            "midi": 54,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Fs3v10.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/A3v10.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/C4v10.wav"
+          },
+          {
+            "midi": 63,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Ds4v10.wav"
+          },
+          {
+            "midi": 66,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Fs4v10.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/A4v10.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/C5v10.wav"
+          },
+          {
+            "midi": 75,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Ds5v10.wav"
+          },
+          {
+            "midi": 78,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Fs5v10.wav"
+          },
+          {
+            "midi": 81,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/A5v10.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/C6v10.wav"
+          },
+          {
+            "midi": 87,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Ds6v10.wav"
+          },
+          {
+            "midi": 90,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Fs6v10.wav"
+          },
+          {
+            "midi": 93,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/A6v10.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/C7v10.wav"
+          },
+          {
+            "midi": 99,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Ds7v10.wav"
+          },
+          {
+            "midi": 102,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/Fs7v10.wav"
+          },
+          {
+            "midi": 105,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/A7v10.wav"
+          },
+          {
+            "midi": 108,
+            "vel": 2,
+            "file": "res://assets/samples/salamander_grand/C8v10.wav"
+          },
+          {
+            "midi": 21,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/A0v14.wav"
+          },
+          {
+            "midi": 24,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/C1v14.wav"
+          },
+          {
+            "midi": 27,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Ds1v14.wav"
+          },
+          {
+            "midi": 30,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Fs1v14.wav"
+          },
+          {
+            "midi": 33,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/A1v14.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/C2v14.wav"
+          },
+          {
+            "midi": 39,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Ds2v14.wav"
+          },
+          {
+            "midi": 42,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Fs2v14.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/A2v14.wav"
+          },
+          {
+            "midi": 48,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/C3v14.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Ds3v14.wav"
+          },
+          {
+            "midi": 54,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Fs3v14.wav"
+          },
+          {
+            "midi": 57,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/A3v14.wav"
+          },
+          {
+            "midi": 60,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/C4v14.wav"
+          },
+          {
+            "midi": 63,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Ds4v14.wav"
+          },
+          {
+            "midi": 66,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Fs4v14.wav"
+          },
+          {
+            "midi": 69,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/A4v14.wav"
+          },
+          {
+            "midi": 72,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/C5v14.wav"
+          },
+          {
+            "midi": 75,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Ds5v14.wav"
+          },
+          {
+            "midi": 78,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Fs5v14.wav"
+          },
+          {
+            "midi": 81,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/A5v14.wav"
+          },
+          {
+            "midi": 84,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/C6v14.wav"
+          },
+          {
+            "midi": 87,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Ds6v14.wav"
+          },
+          {
+            "midi": 90,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Fs6v14.wav"
+          },
+          {
+            "midi": 93,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/A6v14.wav"
+          },
+          {
+            "midi": 96,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/C7v14.wav"
+          },
+          {
+            "midi": 99,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Ds7v14.wav"
+          },
+          {
+            "midi": 102,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/Fs7v14.wav"
+          },
+          {
+            "midi": 105,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/A7v14.wav"
+          },
+          {
+            "midi": 108,
+            "vel": 3,
+            "file": "res://assets/samples/salamander_grand/C8v14.wav"
+          }
+        ],
+        "loop": false,
+        "release": 0.6
+      }
+    }
+  ]
+}

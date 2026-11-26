@@ -1,0 +1,786 @@
+﻿{
+    "version":  1,
+    "license_note":  "Recorded samples from the Versilian Community Sample Library (VCSL) by Versilian Studios, released under CC0 1.0 (public domain dedication). https://github.com/sgossner/VCSL",
+    "instruments":  [
+                        {
+                            "id":  "ocarina",
+                            "name":  "Ocarina",
+                            "category":  "World",
+                            "family":  "Whistle flute",
+                            "synth":  "sampler",
+                            "color":  "#8FD6A4",
+                            "start_midi":  68,
+                            "range":  [
+                                          55,
+                                          78
+                                      ],
+                            "description":  "Recorded ceramic ocarina. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  59,
+                                                               "file":  "res://assets/samples/ocarina/StdOcarina_Sus_B3.wav"
+                                                           },
+                                                           {
+                                                               "midi":  64,
+                                                               "file":  "res://assets/samples/ocarina/StdOcarina_Sus_E4.wav"
+                                                           },
+                                                           {
+                                                               "midi":  68,
+                                                               "file":  "res://assets/samples/ocarina/StdOcarina_Sus_G#4.wav"
+                                                           },
+                                                           {
+                                                               "midi":  72,
+                                                               "file":  "res://assets/samples/ocarina/StdOcarina_Sus_C5.wav"
+                                                           }
+                                                       ],
+                                           "loop":  true,
+                                           "release":  0.3
+                                       }
+                        },
+                        {
+                            "id":  "harmonica",
+                            "name":  "Harmonica",
+                            "category":  "Western",
+                            "family":  "Free reed",
+                            "synth":  "sampler",
+                            "color":  "#C9CFD8",
+                            "start_midi":  72,
+                            "range":  [
+                                          48,
+                                          85
+                                      ],
+                            "description":  "Recorded Hohner Special 20 harmonica. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  52,
+                                                               "file":  "res://assets/samples/harmonica/Hohner-Special20_Normal_E3.wav"
+                                                           },
+                                                           {
+                                                               "midi":  60,
+                                                               "file":  "res://assets/samples/harmonica/Hohner-Special20_Normal_C4.wav"
+                                                           },
+                                                           {
+                                                               "midi":  72,
+                                                               "file":  "res://assets/samples/harmonica/Hohner-Special20_Normal_C5.wav"
+                                                           },
+                                                           {
+                                                               "midi":  79,
+                                                               "file":  "res://assets/samples/harmonica/Hohner-Special20_Normal_G5.wav"
+                                                           }
+                                                       ],
+                                           "loop":  true,
+                                           "release":  0.25
+                                       }
+                        },
+                        {
+                            "id":  "pipe_organ",
+                            "name":  "Pipe Organ",
+                            "category":  "Keys",
+                            "family":  "Organ",
+                            "synth":  "sampler",
+                            "color":  "#B8A27A",
+                            "start_midi":  60,
+                            "range":  [
+                                          29,
+                                          81
+                                      ],
+                            "description":  "Recorded pipe organ, open diapason. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  33,
+                                                               "file":  "res://assets/samples/pipe_organ/Rode_Man3Open_A1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/pipe_organ/Rode_Man3Open_C3.wav"
+                                                           },
+                                                           {
+                                                               "midi":  60,
+                                                               "file":  "res://assets/samples/pipe_organ/Rode_Man3Open_C4.wav"
+                                                           },
+                                                           {
+                                                               "midi":  75,
+                                                               "file":  "res://assets/samples/pipe_organ/Rode_Man3Open_D#5.wav"
+                                                           }
+                                                       ],
+                                           "loop":  true,
+                                           "release":  0.5
+                                       }
+                        },
+                        {
+                            "id":  "recorder",
+                            "name":  "Recorder",
+                            "category":  "Western",
+                            "family":  "Woodwind",
+                            "synth":  "sampler",
+                            "color":  "#E6D3A3",
+                            "start_midi":  76,
+                            "range":  [
+                                          58,
+                                          88
+                                      ],
+                            "description":  "Recorded Baroque soprano recorder. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  62,
+                                                               "file":  "res://assets/samples/recorder/SopRecorder_Sus_D4_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  70,
+                                                               "file":  "res://assets/samples/recorder/SopRecorder_Sus_A#4_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  76,
+                                                               "file":  "res://assets/samples/recorder/SopRecorder_Sus_E5_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  82,
+                                                               "file":  "res://assets/samples/recorder/SopRecorder_Sus_A#5_rr1_Main.wav"
+                                                           }
+                                                       ],
+                                           "loop":  true,
+                                           "release":  0.3
+                                       }
+                        },
+                        {
+                            "id":  "tenor_sax",
+                            "name":  "Tenor Saxophone",
+                            "category":  "Western",
+                            "family":  "Reed",
+                            "synth":  "sampler",
+                            "color":  "#E0A458",
+                            "start_midi":  56,
+                            "range":  [
+                                          36,
+                                          78
+                                      ],
+                            "description":  "Recorded tenor saxophone. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  40,
+                                                               "file":  "res://assets/samples/tenor_sax/BrettTenor_NV_Main_E2_vl2_rr1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/tenor_sax/BrettTenor_NV_Main_C3_vl2_rr1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  56,
+                                                               "file":  "res://assets/samples/tenor_sax/BrettTenor_NV_Main_G#3_vl2_rr1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  64,
+                                                               "file":  "res://assets/samples/tenor_sax/BrettTenor_NV_Main_E4_vl2_rr1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  72,
+                                                               "file":  "res://assets/samples/tenor_sax/BrettTenor_NV_Main_C5_vl2_rr1.wav"
+                                                           }
+                                                       ],
+                                           "loop":  true,
+                                           "release":  0.3
+                                       }
+                        },
+                        {
+                            "id":  "dan_tranh",
+                            "name":  "Dan Tranh Zither",
+                            "category":  "Chinese",
+                            "family":  "Zither",
+                            "synth":  "sampler",
+                            "color":  "#E58B8B",
+                            "start_midi":  54,
+                            "range":  [
+                                          35,
+                                          74
+                                      ],
+                            "description":  "Recorded Vietnamese zither (like a guzheng). Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  39,
+                                                               "file":  "res://assets/samples/dan_tranh/D#2_f_1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  47,
+                                                               "file":  "res://assets/samples/dan_tranh/B2_f_1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  54,
+                                                               "file":  "res://assets/samples/dan_tranh/F#3_f_1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  61,
+                                                               "file":  "res://assets/samples/dan_tranh/C#4_f_1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  68,
+                                                               "file":  "res://assets/samples/dan_tranh/G#4_f_1.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "release":  0.6
+                                       }
+                        },
+                        {
+                            "id":  "harpsichord",
+                            "name":  "Harpsichord",
+                            "category":  "Keys",
+                            "family":  "Keyboard",
+                            "synth":  "sampler",
+                            "color":  "#C99A6B",
+                            "start_midi":  54,
+                            "range":  [
+                                          36,
+                                          74
+                                      ],
+                            "description":  "Recorded French harpsichord. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  40,
+                                                               "file":  "res://assets/samples/harpsichord/Harpsi2_Normal_E2_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  46,
+                                                               "file":  "res://assets/samples/harpsichord/Harpsi2_Normal_A#2_rr3_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  54,
+                                                               "file":  "res://assets/samples/harpsichord/Harpsi2_Normal_F#3_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  62,
+                                                               "file":  "res://assets/samples/harpsichord/Harpsi2_Normal_D4_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  68,
+                                                               "file":  "res://assets/samples/harpsichord/Harpsi2_Normal_G#4_rr1_Main.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "release":  0.35
+                                       }
+                        },
+                        {
+                            "id":  "folk_harp",
+                            "name":  "Folk Harp",
+                            "category":  "Western",
+                            "family":  "Plucked string",
+                            "synth":  "sampler",
+                            "color":  "#F0C9E0",
+                            "start_midi":  52,
+                            "range":  [
+                                          26,
+                                          80
+                                      ],
+                            "description":  "Recorded folk harp. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  30,
+                                                               "file":  "res://assets/samples/folk_harp/EWHarp_Normal_F#1_v2_RR1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  40,
+                                                               "file":  "res://assets/samples/folk_harp/EWHarp_Normal_E2_v2_RR1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  52,
+                                                               "file":  "res://assets/samples/folk_harp/EWHarp_Normal_E3_v2_RR1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  64,
+                                                               "file":  "res://assets/samples/folk_harp/EWHarp_Normal_E4_v2_RR1.wav"
+                                                           },
+                                                           {
+                                                               "midi":  74,
+                                                               "file":  "res://assets/samples/folk_harp/EWHarp_Normal_D5_v2_RR1.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "release":  0.8
+                                       }
+                        },
+                        {
+                            "id":  "fm_piano",
+                            "name":  "FM Electric Piano",
+                            "category":  "Keys",
+                            "family":  "Electric piano",
+                            "synth":  "sampler",
+                            "color":  "#A8D8F0",
+                            "start_midi":  68,
+                            "range":  [
+                                          40,
+                                          94
+                                      ],
+                            "description":  "Recorded Yamaha TX81Z FM piano. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  44,
+                                                               "file":  "res://assets/samples/fm_piano/FMPiano_G#2_vl2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  56,
+                                                               "file":  "res://assets/samples/fm_piano/FMPiano_G#3_vl2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  68,
+                                                               "file":  "res://assets/samples/fm_piano/FMPiano_G#4_vl2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  76,
+                                                               "file":  "res://assets/samples/fm_piano/FMPiano_E5_vl2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  88,
+                                                               "file":  "res://assets/samples/fm_piano/FMPiano_E6_vl2.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "release":  0.5
+                                       }
+                        },
+                        {
+                            "id":  "clavisynth",
+                            "name":  "Clavisynth",
+                            "category":  "Keys",
+                            "family":  "Electric keys",
+                            "synth":  "sampler",
+                            "color":  "#9CE0C8",
+                            "start_midi":  68,
+                            "range":  [
+                                          36,
+                                          86
+                                      ],
+                            "description":  "Recorded Yamaha TX81Z clavinet-like synth. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  40,
+                                                               "file":  "res://assets/samples/clavisynth/Clavisynth_E2_vl2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  56,
+                                                               "file":  "res://assets/samples/clavisynth/Clavisynth_G#3_vl2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  68,
+                                                               "file":  "res://assets/samples/clavisynth/Clavisynth_G#4_vl2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  80,
+                                                               "file":  "res://assets/samples/clavisynth/Clavisynth_G#5_vl2.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "release":  0.3
+                                       }
+                        },
+                        {
+                            "id":  "kalimba",
+                            "name":  "Kalimba",
+                            "category":  "World",
+                            "family":  "Thumb piano",
+                            "synth":  "sampler",
+                            "color":  "#E8C07A",
+                            "start_midi":  59,
+                            "range":  [
+                                          45,
+                                          75
+                                      ],
+                            "description":  "Recorded Kenyan kalimba (thumb piano). Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  49,
+                                                               "file":  "res://assets/samples/kalimba/Mbira6_Normal_MainSpirit_C#3_k7_vl3_rr2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  54,
+                                                               "file":  "res://assets/samples/kalimba/Mbira6_Normal_MainSpirit_F#3_k5_vl3_rr2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  59,
+                                                               "file":  "res://assets/samples/kalimba/Mbira6_Normal_MainSpirit_B3_k12_vl3_rr2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  63,
+                                                               "file":  "res://assets/samples/kalimba/Mbira6_Normal_MainSpirit_D#4_k13_vl3_rr2.wav"
+                                                           },
+                                                           {
+                                                               "midi":  69,
+                                                               "file":  "res://assets/samples/kalimba/Mbira6_Normal_MainSpirit_A4_k1_vl3_rr2.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "release":  0.8
+                                       }
+                        },
+                        {
+                            "id":  "balafon",
+                            "name":  "Balafon",
+                            "category":  "World",
+                            "family":  "Tuned percussion",
+                            "synth":  "sampler",
+                            "color":  "#D9A066",
+                            "start_midi":  65,
+                            "range":  [
+                                          49,
+                                          78
+                                      ],
+                            "description":  "Recorded West African wooden xylophone. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  53,
+                                                               "file":  "res://assets/samples/balafon/EthnicXylo_hardM_F3_vl2_rr1_Mid.wav"
+                                                           },
+                                                           {
+                                                               "midi":  60,
+                                                               "file":  "res://assets/samples/balafon/EthnicXylo_hardM_C4_vl2_rr1_Mid.wav"
+                                                           },
+                                                           {
+                                                               "midi":  65,
+                                                               "file":  "res://assets/samples/balafon/EthnicXylo_hardM_F4_vl2_rr1_Mid.wav"
+                                                           },
+                                                           {
+                                                               "midi":  72,
+                                                               "file":  "res://assets/samples/balafon/EthnicXylo_hardM_C5_vl2_rr1_Mid.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "release":  0.4
+                                       }
+                        },
+                        {
+                            "id":  "vibraphone",
+                            "name":  "Vibraphone",
+                            "category":  "Orchestra",
+                            "family":  "Tuned percussion",
+                            "synth":  "sampler",
+                            "color":  "#9FD3F0",
+                            "start_midi":  62,
+                            "range":  [
+                                          41,
+                                          78
+                                      ],
+                            "description":  "Recorded vibraphone, hard mallets. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  45,
+                                                               "file":  "res://assets/samples/vibraphone/Vibes_hard_A2_v2_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  55,
+                                                               "file":  "res://assets/samples/vibraphone/Vibes_hard_G3_v2_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  62,
+                                                               "file":  "res://assets/samples/vibraphone/Vibes_hard_D4_v2_rr1_Main.wav"
+                                                           },
+                                                           {
+                                                               "midi":  72,
+                                                               "file":  "res://assets/samples/vibraphone/Vibes_hard_C5_v2_rr1_Main.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "release":  0.8
+                                       }
+                        },
+                        {
+                            "id":  "darbuka_dum",
+                            "name":  "Darbuka Dum",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#E07A5F",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Darbuka bass hit. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/darbuka_dum/Darbuka_1_hit_vl2_rr1.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "darbuka_tek",
+                            "name":  "Darbuka Tek",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#F2A65A",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Darbuka rim hit. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/darbuka_tek/Darbuka_3_hit_vl2_rr1.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "frame_drum",
+                            "name":  "Frame Drum",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#C98B5A",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Large hand frame drum, open hit. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/frame_drum/HDrumL_Hit_v3_rr1_Sum.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "cajon",
+                            "name":  "Cajon",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#D4A373",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Cajon bass hit. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/cajon/Cajon_hit1_f_rr1.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "cajon_slap",
+                            "name":  "Cajon Slap",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#E9C46A",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Cajon slap. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/cajon_slap/Cajon_hit3_f_rr1.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "bongo_high",
+                            "name":  "Bongo High",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#F4A261",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "High bongo hit. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/bongo_high/BongoH_Hit1_v2_rr1_Mid.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "bongo_low",
+                            "name":  "Bongo Low",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#E76F51",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Low bongo hit. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/bongo_low/BongoL_Hit1_v2_rr1_Mid.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "agogo_high",
+                            "name":  "Agogo High",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#F6D55C",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "High agogo bell. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/agogo_high/Agogo_High_v2_rr1_Mid.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "agogo_low",
+                            "name":  "Agogo Low",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#E8B04A",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Low agogo bell. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/agogo_low/Agogo_Low_v2_rr1_Mid.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "woodblock",
+                            "name":  "Woodblock",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#C08552",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Woodblock click. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/woodblock/wood_click_f_rr1.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "tambourine",
+                            "name":  "Tambourine",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#BFE3FF",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Tambourine hit. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/tambourine/Tamb1_Hit_v2_rr1_Mid.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "finger_cymbals",
+                            "name":  "Finger Cymbals",
+                            "category":  "World",
+                            "family":  "Percussion",
+                            "synth":  "sampler",
+                            "color":  "#D8E2EC",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Finger cymbals ring. Real recording (VCSL, CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/finger_cymbals/Fing_Cymb.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        }
+                    ]
+}

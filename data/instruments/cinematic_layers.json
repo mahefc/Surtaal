@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "license_note": "Layered instruments: each one plays several of the recorded instruments (VSCO 2 CE / VCSL, CC0) at once. No extra samples.",
+  "instruments": [
+    {
+      "id": "epic_strings", "name": "Epic Strings", "category": "Cinematic", "family": "Layered strings",
+      "synth": "layered", "color": "#E8C56B", "start_midi": 60, "range": [36, 88],
+      "description": "Violins, violas, cellos and basses together, a big section like a film score. Starts as an orchestra (~20 players).",
+      "params": { "ensemble": 2, "layers": [
+        { "id": "violins", "shift": 0, "gain": 0.85 },
+        { "id": "violas", "shift": 0, "gain": 0.65 },
+        { "id": "cellos", "shift": -12, "gain": 0.8 },
+        { "id": "contrabass", "shift": -24, "gain": 0.55 } ] }
+    },
+    {
+      "id": "soaring_strings", "name": "Soaring Strings", "category": "Cinematic", "family": "Layered strings",
+      "synth": "layered", "color": "#F2D98C", "start_midi": 69, "range": [55, 96],
+      "description": "High violins in two octaves with a solo violin on top: the rising theme sound. Starts as a full orchestra (~30 players).",
+      "params": { "ensemble": 3, "layers": [
+        { "id": "violins", "shift": 0, "gain": 0.85 },
+        { "id": "violins", "shift": 12, "gain": 0.5 },
+        { "id": "solo_violin", "shift": 0, "gain": 0.45 } ] }
+    },
+    {
+      "id": "dark_strings", "name": "Dark Strings", "category": "Cinematic", "family": "Layered strings",
+      "synth": "layered", "color": "#8D95B8", "start_midi": 48, "range": [28, 72],
+      "description": "Low cellos and basses with violas: the brooding, driving string sound of a dark hero film (Batman Begins style).",
+      "params": { "ensemble": 2, "layers": [
+        { "id": "cellos", "shift": 0, "gain": 0.9 },
+        { "id": "contrabass", "shift": -12, "gain": 0.8 },
+        { "id": "violas", "shift": 0, "gain": 0.5 } ] }
+    },
+    {
+      "id": "brass_braam", "name": "Braam Brass", "category": "Cinematic", "family": "Layered brass",
+      "synth": "layered", "color": "#D9822B", "start_midi": 48, "range": [28, 72],
+      "description": "Horns, trombones and tuba stacked on one low note: the huge brass blast of a modern trailer. Starts as an orchestra.",
+      "params": { "ensemble": 2, "layers": [
+        { "id": "horn", "shift": 0, "gain": 0.8 },
+        { "id": "trombone", "shift": -12, "gain": 0.9 },
+        { "id": "tuba", "shift": -24, "gain": 0.8 },
+        { "id": "trumpet", "shift": 0, "gain": 0.45 } ] }
+    },
+    {
+      "id": "heroic_horns", "name": "Heroic Horns", "category": "Cinematic", "family": "Layered brass",
+      "synth": "layered", "color": "#E3A24A", "start_midi": 60, "range": [36, 84],
+      "description": "French horns with trumpets and trombones: a bold, noble hero theme.",
+      "params": { "ensemble": 1, "layers": [
+        { "id": "horn", "shift": 0, "gain": 0.9 },
+        { "id": "trumpet", "shift": 0, "gain": 0.55 },
+        { "id": "trombone", "shift": -12, "gain": 0.6 } ] }
+    },
+    {
+      "id": "cinema_piano", "name": "Cinematic Piano", "category": "Cinematic", "family": "Piano and strings",
+      "synth": "layered", "color": "#B8C4E0", "start_midi": 60, "range": [36, 96],
+      "description": "A grand piano with a soft string bed under it: emotional, spacious piano scoring.",
+      "params": { "ensemble": 1, "layers": [
+        { "id": "grand_piano", "shift": 0, "gain": 0.9 },
+        { "id": "violins", "shift": 0, "gain": 0.3 },
+        { "id": "cellos", "shift": -12, "gain": 0.35 } ] }
+    },
+    {
+      "id": "trailer_hit", "name": "Trailer Hit", "category": "Cinematic", "family": "Layered impact",
+      "synth": "layered", "color": "#FF6B6B", "start_midi": 36, "range": [24, 60],
+      "description": "Taiko, bass drum, cymbal and gong in one huge hit.",
+      "params": { "layers": [
+        { "id": "taiko", "shift": -12, "gain": 0.9 },
+        { "id": "bassdrum", "shift": 0, "gain": 0.8 },
+        { "id": "cymbal", "shift": 0, "gain": 0.35 },
+        { "id": "gong", "shift": 0, "gain": 0.45 } ] }
+    },
+    {
+      "id": "panda_flute", "name": "Kung Fu Flute", "category": "Cinematic", "family": "Layered flute",
+      "synth": "layered", "color": "#7BD88F", "start_midi": 72, "range": [57, 96],
+      "description": "A bamboo dizi with a concert flute: the airy, heroic Chinese flute of an animated martial arts film.",
+      "params": { "layers": [
+        { "id": "dizi", "shift": 0, "gain": 0.9 },
+        { "id": "flute", "shift": 0, "gain": 0.55 } ] }
+    },
+    {
+      "id": "panda_strings", "name": "Kung Fu Strings", "category": "Cinematic", "family": "Layered strings",
+      "synth": "layered", "color": "#E0675A", "start_midi": 64, "range": [48, 90],
+      "description": "Erhu on top of a string section: sweeping, emotional Chinese-flavoured strings. Starts as a section (~10 players).",
+      "params": { "ensemble": 1, "layers": [
+        { "id": "erhu", "shift": 0, "gain": 0.9 },
+        { "id": "violins", "shift": 0, "gain": 0.45 },
+        { "id": "cellos", "shift": -12, "gain": 0.35 } ] }
+    },
+    {
+      "id": "panda_zither", "name": "Kung Fu Zither", "category": "Cinematic", "family": "Layered zither",
+      "synth": "layered", "color": "#C9A96E", "start_midi": 60, "range": [36, 90],
+      "description": "Dan tranh and guzheng plucks with a harp sparkle on top: the shimmering Chinese strings of a temple scene.",
+      "params": { "layers": [
+        { "id": "dan_tranh", "shift": 0, "gain": 0.9 },
+        { "id": "guzheng", "shift": 0, "gain": 0.65 },
+        { "id": "harp_real", "shift": 12, "gain": 0.35 } ] }
+    }
+  ]
+}

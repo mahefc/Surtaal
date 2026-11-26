@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license_note": "All sounds are synthesized procedurally at runtime by SynthBaker. No third-party samples are used.",
+  "instruments": [
+    {"id":"piano","name":"Grand Piano","category":"Western","family":"Keyboard","synth":"wavetable","color":"#4DA3FF","start_midi":48,"range":[24,96],
+     "description":"Additive piano that darkens as it decays.",
+     "params":{"dur":3.2,"harmonics":[1.0,0.6,0.45,0.3,0.22,0.15,0.1,0.07,0.05,0.03],"tail":[1.0,0.22,0.04],"morph":0.5,"attack":0.004,"decay":1.3,"sustain":0.0,"release":0.4}},
+    {"id":"guitar","name":"Acoustic Guitar","category":"Western","family":"Plucked string","synth":"pluck","color":"#6FB1FC","start_midi":48,"range":[40,84],
+     "description":"Warm nylon-style plucked string.",
+     "params":{"dur":2.4,"damp":0.9975,"bright":0.4,"buzz":0.0}},
+    {"id":"violin","name":"Violin","category":"Western","family":"Bowed string","synth":"wavetable","color":"#7AC7FF","start_midi":60,"range":[55,96],
+     "description":"Singing bowed string with gentle vibrato.",
+     "params":{"dur":2.2,"harmonics":[1.0,0.55,0.35,0.28,0.22,0.18,0.15,0.12,0.1,0.08,0.07,0.06],"attack":0.12,"decay":0.3,"sustain":0.9,"release":0.35,"vib_hz":5.5,"vib_depth":0.006,"vib_delay":0.3,"detune":0.003}},
+    {"id":"strings","name":"Cinematic Strings","category":"Western","family":"Orchestral","synth":"wavetable","color":"#8E9BFF","start_midi":48,"range":[36,84],
+     "description":"Wide, slow-swelling string ensemble for scores.",
+     "params":{"dur":3.4,"harmonics":[1.0,0.5,0.33,0.25,0.2,0.16,0.14,0.12,0.1,0.08],"attack":0.5,"decay":0.5,"sustain":0.9,"release":0.9,"vib_hz":5.0,"vib_depth":0.004,"vib_delay":0.4,"detune":0.007}},
+    {"id":"synth_lead","name":"Synth Lead","category":"Western","family":"Synthesizer","synth":"wavetable","color":"#B58CFF","start_midi":60,"range":[36,96],
+     "description":"Detuned saw lead.",
+     "params":{"dur":1.5,"harmonics":[1.0,0.5,0.33,0.25,0.2,0.166,0.142,0.125,0.111,0.1,0.09,0.083,0.077,0.071,0.066,0.062],"attack":0.01,"decay":0.3,"sustain":0.7,"release":0.25,"detune":0.006,"vib_hz":5.5,"vib_depth":0.003,"vib_delay":0.4}},
+
+    {"id":"guzheng","name":"Guzheng","category":"Chinese","family":"Plucked zither","synth":"pluck","color":"#FF5470","start_midi":60,"range":[48,96],
+     "description":"Shimmering zither with a bright, glassy pluck.",
+     "params":{"dur":2.4,"damp":0.9985,"bright":0.75,"buzz":0.0}},
+    {"id":"erhu","name":"Erhu","category":"Chinese","family":"Bowed fiddle","synth":"wavetable","color":"#FF7A90","start_midi":67,"range":[62,96],
+     "description":"Vocal two-string fiddle with deep portamento.",
+     "params":{"dur":2.0,"harmonics":[1.0,0.7,0.55,0.45,0.35,0.28,0.2,0.15,0.1],"attack":0.12,"decay":0.3,"sustain":0.9,"release":0.3,"breath":0.015,"vib_hz":5.5,"vib_depth":0.009,"vib_delay":0.25,"scoop":-0.035}},
+    {"id":"dizi","name":"Dizi","category":"Chinese","family":"Bamboo flute","synth":"wavetable","color":"#FF9AA9","start_midi":72,"range":[62,100],
+     "description":"Bright bamboo flute with a reedy membrane edge.",
+     "params":{"dur":1.7,"harmonics":[1.0,0.35,0.2,0.12,0.08,0.05],"attack":0.06,"decay":0.2,"sustain":0.85,"release":0.25,"breath":0.09,"vib_hz":5.5,"vib_depth":0.003,"vib_delay":0.3,"scoop":-0.02}},
+
+    {"id":"taiko","name":"Cinematic Drum","category":"Cinematic","family":"Percussion","synth":"membrane","color":"#2ED3B7","start_midi":36,"range":[24,55],
+     "description":"Deep impact drum for cinematic hits.",
+     "params":{"dur":1.8,"decay":0.9,"drop":0.5,"drop_time":0.08,"noise":0.3,"noise_decay":0.03,"partials":[[1.6,0.3,0.5],[2.4,0.12,0.3]]}},
+
+    {"id":"kick","name":"Kick","category":"Drums","family":"Drum kit","synth":"membrane","color":"#FF6B6B","start_midi":36,"range":[36,48],
+     "description":"Punchy electronic kick.",
+     "params":{"dur":0.55,"decay":0.16,"drop":2.2,"drop_time":0.03,"noise":0.12,"noise_decay":0.006}},
+    {"id":"snare","name":"Snare","category":"Drums","family":"Drum kit","synth":"membrane","color":"#FFD93D","start_midi":55,"range":[50,60],
+     "description":"Snappy snare with noise sizzle.",
+     "params":{"dur":0.4,"decay":0.08,"drop":0.3,"drop_time":0.02,"noise":0.9,"noise_decay":0.09,"noise_hp":true,"tone":0.7}},
+    {"id":"hat","name":"Hi-hat","category":"Drums","family":"Drum kit","synth":"membrane","color":"#6BCB77","start_midi":60,"range":[55,65],
+     "description":"Closed hi-hat, filtered noise tick.",
+     "params":{"dur":0.14,"decay":0.01,"tone":0.0,"drop":0.0,"noise":1.0,"noise_decay":0.028,"noise_hp":true}}
+  ]
+}

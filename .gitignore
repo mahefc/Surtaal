@@ -1,0 +1,26 @@
+# Godot 4
+.godot/
+*.translation
+
+# Exports / local builds
+build/
+*.apk
+*.aab
+*.ipa
+*.exe
+*.dmg
+*.zip
+*.pck
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
+
+# Local / secrets
+.env
+*.local
+export_credentials.cfg

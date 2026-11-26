@@ -1,0 +1,150 @@
+﻿{
+    "version":  1,
+    "license_note":  "Tabla strokes recorded by dio-333 (Freesound), released under CC0 1.0, as packaged in https://github.com/tmhglnd/mercury",
+    "instruments":  [
+                        {
+                            "id":  "tabla_na",
+                            "name":  "Tabla Na",
+                            "category":  "Indian",
+                            "family":  "Hand drum",
+                            "synth":  "sampler",
+                            "color":  "#FF9F43",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Tabla: Na, the sharp ring on the right drum. Real recording (CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/tabla_na/tabla_hi.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "tabla_naop",
+                            "name":  "Tabla Na (open)",
+                            "category":  "Indian",
+                            "family":  "Hand drum",
+                            "synth":  "sampler",
+                            "color":  "#FFB26B",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Tabla: open Na, a longer ring. Real recording (CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/tabla_naop/tabla_hi_long.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "tabla_tun",
+                            "name":  "Tabla Tun",
+                            "category":  "Indian",
+                            "family":  "Hand drum",
+                            "synth":  "sampler",
+                            "color":  "#FF7B54",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Tabla: Tun, the deep pitched stroke on the right drum. Real recording (CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/tabla_tun/tabla_mid_long.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "tabla_te",
+                            "name":  "Tabla Te",
+                            "category":  "Indian",
+                            "family":  "Hand drum",
+                            "synth":  "sampler",
+                            "color":  "#F08A5D",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Tabla: Te, a dry tap. Real recording (CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/tabla_te/tabla_mid.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "tabla_ghe",
+                            "name":  "Tabla Ghe",
+                            "category":  "Indian",
+                            "family":  "Hand drum",
+                            "synth":  "sampler",
+                            "color":  "#E9967A",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Tabla: Ghe, the bending bass on the left drum. Real recording (CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/tabla_ghe/tabla_lo_long.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        },
+                        {
+                            "id":  "tabla_ke",
+                            "name":  "Tabla Ke",
+                            "category":  "Indian",
+                            "family":  "Hand drum",
+                            "synth":  "sampler",
+                            "color":  "#E07A5F",
+                            "start_midi":  48,
+                            "range":  [
+                                          36,
+                                          60
+                                      ],
+                            "description":  "Tabla: Ke, a short slap on the left drum. Real recording (CC0).",
+                            "params":  {
+                                           "samples":  [
+                                                           {
+                                                               "midi":  48,
+                                                               "file":  "res://assets/samples/tabla_ke/tabla_lo_short.wav"
+                                                           }
+                                                       ],
+                                           "loop":  false,
+                                           "fixed":  true
+                                       }
+                        }
+                    ]
+}
