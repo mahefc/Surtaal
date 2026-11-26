@@ -109,14 +109,14 @@ func _build_bar() -> void:
 	corner.custom_minimum_size = Vector2(HEAD_W - ZB - 16.0, RULER_H)
 	corner.add_theme_constant_override("separation", 3)
 	bar.add_child(corner)
-	_undo_btn = IconButton.create("undo", "Undo", Vector2(28, 30))
+	_undo_btn = IconButton.create("undo", "Undo", Vector2(24, 26))
 	_undo_btn.pressed.connect(ProjectManager.undo)
 	corner.add_child(_undo_btn)
-	_redo_btn = IconButton.create("redo", "Redo", Vector2(28, 30))
+	_redo_btn = IconButton.create("redo", "Redo", Vector2(24, 26))
 	_redo_btn.pressed.connect(ProjectManager.redo)
 	corner.add_child(_redo_btn)
 	corner.add_child(_gap(4))
-	_play_btn = IconButton.create("play", "Play from the start marker (tap the time ruler to move it)", Vector2(34, 30))
+	_play_btn = IconButton.create("play", "Play from the start marker (tap the time ruler to move it)", Vector2(28, 26))
 	_play_btn.glyph.glyph_color = Color.WHITE
 	StudioTheme.tint_button(_play_btn, Color("2ed3b7").darkened(0.45))
 	_play_btn.pressed.connect(_on_play)
@@ -126,7 +126,7 @@ func _build_bar() -> void:
 	_bpm_menu.tooltip_text = "Tempo (beats per minute)"
 	_bpm_menu.focus_mode = Control.FOCUS_NONE
 	_bpm_menu.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_bpm_menu.custom_minimum_size = Vector2(0, 30)
+	_bpm_menu.custom_minimum_size = Vector2(0, 26)
 	_bpm_menu.add_theme_font_size_override("font_size", 12)
 	_bpm_menu.pressed.connect(func():
 		var gp := _bpm_menu.get_global_rect().position + Vector2(0, _bpm_menu.size.y + 4)
@@ -136,9 +136,9 @@ func _build_bar() -> void:
 	var bpm_row := HBoxContainer.new()
 	bpm_row.add_theme_constant_override("separation", 6)
 	_bpm_pop.add_child(bpm_row)
-	var slower := IconButton.create("minus", "Remove 5 BPM", Vector2(36, 32))
+	var slower := IconButton.create("minus", "Remove 5 BPM", Vector2(28, 26))
 	slower.pressed.connect(func(): Transport.bpm -= 5.0)
-	var faster := IconButton.create("plus", "Add 5 BPM", Vector2(36, 32))
+	var faster := IconButton.create("plus", "Add 5 BPM", Vector2(28, 26))
 	faster.pressed.connect(func(): Transport.bpm += 5.0)
 	bpm_row.add_child(slower)
 	bpm_row.add_child(faster)
@@ -364,7 +364,7 @@ func _make_head(t: Track) -> Control:
 	head.add_child(row)
 	# picture of the instrument, then its name (tap = open the track to play / edit)
 	var art := InstrumentArt.new()
-	art.custom_minimum_size = Vector2(30, 30)
+	art.custom_minimum_size = Vector2(24, 24)
 	art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	art.tint = col
 	if t.kind == "melodic":

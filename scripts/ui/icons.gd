@@ -11,7 +11,7 @@ const NAMES := [
 
 
 static func draw(cv: CanvasItem, icon: String, c: Vector2, r: float, col: Color) -> void:
-	var w := maxf(1.8, r * 0.2)
+	var w := maxf(1.4, r * 0.18)
 	match icon:
 		"play":
 			cv.draw_colored_polygon(PackedVector2Array([c + Vector2(-r * 0.55, -r * 0.8), c + Vector2(r * 0.85, 0), c + Vector2(-r * 0.55, r * 0.8)]), col)
@@ -150,12 +150,14 @@ static func draw(cv: CanvasItem, icon: String, c: Vector2, r: float, col: Color)
 				var side := Vector2(-s.y, s.x)
 				cv.draw_colored_polygon(PackedVector2Array([tip, tip - s * r * 0.4 + side * r * 0.3, tip - s * r * 0.4 - side * r * 0.3]), col)
 		"clear":
-			# empty grid + strike: clear the notes on this page
-			cv.draw_rect(Rect2(c - Vector2(r * 0.85, r * 0.7), Vector2(r * 1.7, r * 1.4)), col, false, w)
-			cv.draw_line(c + Vector2(-r * 0.85, 0), c + Vector2(r * 0.85, 0), col, w * 0.7, true)
-			cv.draw_line(c + Vector2(-r * 0.28, -r * 0.7), c + Vector2(-r * 0.28, r * 0.7), col, w * 0.7, true)
-			cv.draw_line(c + Vector2(r * 0.28, -r * 0.7), c + Vector2(r * 0.28, r * 0.7), col, w * 0.7, true)
-			cv.draw_line(c + Vector2(-r * 0.95, r * 0.85), c + Vector2(r * 0.95, -r * 0.85), col, w * 1.3, true)
+			# eraser: angled block with a clean face
+			cv.draw_colored_polygon(PackedVector2Array([
+				c + Vector2(-r * 0.85, r * 0.15), c + Vector2(-r * 0.25, -r * 0.75),
+				c + Vector2(r * 0.55, -r * 0.35), c + Vector2(-r * 0.05, r * 0.55)]), col)
+			cv.draw_colored_polygon(PackedVector2Array([
+				c + Vector2(-r * 0.05, r * 0.55), c + Vector2(r * 0.55, -r * 0.35),
+				c + Vector2(r * 0.85, r * 0.05), c + Vector2(r * 0.25, r * 0.95)]), Color(col, 0.55))
+			cv.draw_line(c + Vector2(-r * 0.7, r * 0.85), c + Vector2(r * 0.55, r * 0.85), col, w * 0.9, true)
 		"wave":
 			var hs := [0.25, 0.6, 0.95, 0.5, 0.8, 0.35, 0.6]
 			for i in hs.size():

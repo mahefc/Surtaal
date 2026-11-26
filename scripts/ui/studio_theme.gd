@@ -29,7 +29,7 @@ static func box(color: Color, radius: int = 14, border: int = 0, border_color: C
 
 ## A floating panel: soft shadow, thin rim and a slightly brighter fill.
 static func card(color: Color = PANEL, radius: int = 16) -> StyleBoxFlat:
-	var s := box(color, radius, 1, Color(1, 1, 1, 0.06), 10)
+	var s := box(color, radius, 0, Color.TRANSPARENT, 10)
 	s.shadow_color = Color(0, 0, 0, 0.45)
 	s.shadow_size = 10
 	s.shadow_offset = Vector2(0, 3)
@@ -64,12 +64,12 @@ static func build() -> Theme:
 	var t := Theme.new()
 	t.default_font_size = 14
 
-	var normal := box(PANEL_HI, 12, 1, Color(1, 1, 1, 0.04), 8)
+	var normal := box(PANEL_HI, 12, 0, Color.TRANSPARENT, 8)
 	normal.shadow_color = Color(0, 0, 0, 0.28)
 	normal.shadow_size = 4
 	normal.shadow_offset = Vector2(0, 1)
 	t.set_stylebox("normal", "Button", normal)
-	t.set_stylebox("hover", "Button", box(Color("323a4b"), 12, 1, Color(1, 1, 1, 0.08), 8))
+	t.set_stylebox("hover", "Button", box(Color("323a4b"), 12, 0, Color.TRANSPARENT, 8))
 	t.set_stylebox("pressed", "Button", box(ACCENT, 12, 0, Color.TRANSPARENT, 8))
 	t.set_stylebox("disabled", "Button", box(Color(PANEL, 0.6), 12, 0, Color.TRANSPARENT, 8))
 	t.set_stylebox("focus", "Button", StyleBoxEmpty.new())

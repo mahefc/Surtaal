@@ -41,7 +41,7 @@ func _card(icon: String, title: String, sub: String, kind: String) -> Button:
 	ic.custom_minimum_size = Vector2(0, 56)
 	ic.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var g := IconGlyph.new(icon)
-	g.glyph_scale = 0.4
+	g.glyph_scale = 0.28
 	ic.add_child(g)
 	v.add_child(ic)
 	var t := Label.new()

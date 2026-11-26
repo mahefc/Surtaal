@@ -45,7 +45,7 @@ func _init() -> void:
 	_name_row = nr
 	v.add_child(nr)
 	_art = InstrumentArt.new()
-	_art.custom_minimum_size = Vector2(40, 40)
+	_art.custom_minimum_size = Vector2(32, 32)
 	_art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	nr.add_child(_art)
 	_name_edit = LineEdit.new()
@@ -145,7 +145,7 @@ func _icon_slider(icon: String, slider: HSlider, parent: Control) -> Control:
 	g.custom_minimum_size = Vector2(26, 26)
 	g.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	var glyph := IconGlyph.new(icon)
-	glyph.glyph_scale = 0.4
+	glyph.glyph_scale = 0.28
 	glyph.glyph_color = StudioTheme.DIM
 	g.add_child(glyph)
 	r.add_child(g)

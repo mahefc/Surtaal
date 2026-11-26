@@ -12,7 +12,7 @@ var glyph_color := Color.TRANSPARENT:
 	set(v):
 		glyph_color = v
 		queue_redraw()
-var glyph_scale := 0.3   # icon half-size as a fraction of the button's short side
+var glyph_scale := 0.22   # icon half-size as a fraction of the button's short side
 var icon_left := false   # put the icon at the left edge (for buttons that also show text)
 
 

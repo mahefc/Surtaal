@@ -137,7 +137,7 @@ func _make_card(def: InstrumentDef) -> Button:
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	row.add_theme_constant_override("separation", 9)
 	m.add_child(row)
-	var art := InstrumentArt.make(def, 44.0)
+	var art := InstrumentArt.make(def, 34.0)
 	art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	row.add_child(art)
 	var col := VBoxContainer.new()

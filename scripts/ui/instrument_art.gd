@@ -71,7 +71,7 @@ static func make(def: InstrumentDef, px: float) -> InstrumentArt:
 
 
 func _init() -> void:
-	custom_minimum_size = Vector2(36, 36)
+	custom_minimum_size = Vector2(28, 28)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
@@ -80,13 +80,12 @@ func _draw() -> void:
 	var c := size * 0.5
 	if disc:
 		draw_circle(c, r, Color(tint, 0.18))
-		draw_arc(c, r - 0.75, 0.0, TAU, 40, Color(tint, 0.5), 1.2, true)
-	paint(self, kind, c, r * (0.58 if disc else 0.9), tint)
+	paint(self, kind, c, r * (0.52 if disc else 0.82), tint)
 
 
 ## Draw a picture inside the square of half-size `r` centred on `c` (call from _draw).
 static func paint(cv: CanvasItem, what: String, c: Vector2, r: float, col: Color) -> void:
-	var w := maxf(1.6, r * 0.14)
+	var w := maxf(1.3, r * 0.12)
 	var dark := Color("11141a")
 	match what:
 		"keys":

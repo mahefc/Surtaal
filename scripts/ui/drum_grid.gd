@@ -123,8 +123,7 @@ func _draw() -> void:
 		var pr := minf((rh - 8.0) * 0.5, 17.0)
 		var pc := Vector2(8.0 + pr, y + rh * 0.5)
 		draw_circle(pc, pr, Color(col, 0.2))
-		draw_arc(pc, pr - 0.75, 0.0, TAU, 32, Color(col, 0.55), 1.2, true)
-		InstrumentArt.paint(self, InstrumentArt.kind_of(def), pc, pr * 0.58, col)
+		InstrumentArt.paint(self, InstrumentArt.kind_of(def), pc, pr * 0.52, col)
 		var tx := pc.x + pr + 8.0
 		var tw := lw - 8.0 - tx - 4.0
 		if tw >= 24.0:

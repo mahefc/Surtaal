@@ -17,7 +17,7 @@ var glyph_color: Color:
 		glyph.glyph_color = v
 
 
-static func create(icon: String, tip: String = "", min_size: Vector2 = Vector2(40, 40)) -> IconButton:
+static func create(icon: String, tip: String = "", min_size: Vector2 = Vector2(32, 32)) -> IconButton:
 	var b := IconButton.new()
 	b.glyph.icon_name = icon
 	b.tooltip_text = tip
@@ -27,5 +27,11 @@ static func create(icon: String, tip: String = "", min_size: Vector2 = Vector2(4
 
 func _init() -> void:
 	focus_mode = Control.FOCUS_NONE
+	# Soft fill, no border/outline around the icon.
+	add_theme_stylebox_override("normal", StudioTheme.box(StudioTheme.PANEL_HI, 8, 0, Color.TRANSPARENT, 4))
+	add_theme_stylebox_override("hover", StudioTheme.box(Color("323a4b"), 8, 0, Color.TRANSPARENT, 4))
+	add_theme_stylebox_override("pressed", StudioTheme.box(StudioTheme.ACCENT, 8, 0, Color.TRANSPARENT, 4))
+	add_theme_stylebox_override("disabled", StudioTheme.box(Color(StudioTheme.PANEL, 0.6), 8, 0, Color.TRANSPARENT, 4))
+	add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	glyph = IconGlyph.new()
 	add_child(glyph)

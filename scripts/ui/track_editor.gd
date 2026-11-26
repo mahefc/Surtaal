@@ -2,7 +2,7 @@ class_name TrackEditor
 extends VBoxContainer
 ## Edit one track. Melodic tracks: note view, record, piano keys.
 ## Tap Record -> choose how: VOICE (hum/sing/whistle -> pitch detection -> notes)
-## or PIANO (play the keys with a metronome -> notes, overdubs). Either way the
+## or PIANO (play the keys -> notes, overdubs). Either way the
 ## notes are performed by the track's instrument. Drum tracks: a 16-step grid.
 ##
 ## Layout: landscape (default) = note view + keys on the left, controls in a side
@@ -46,13 +46,15 @@ var _follow_btn: IconButton  # octave buttons also transpose the notes
 var _keys_row: HBoxContainer   # [piano keys]
 var _roll_row: HBoxContainer   # [octave scroll buttons][note editor]
 var _len_btn: IconButton
-var _along_btn: IconButton  # play the other tracks while recording (voice or piano)
 var _loop_btn: IconButton
 var _peak: PeakStrip
 var _rec_btn: IconButton
 var _beat_btn: IconButton   # drum loops: beatbox into the mic
 var _beatbox := false       # the take being recorded is a beatbox for the drum loop
-var _vel_btn: IconButton    # drum loops: draw the loudness of each hit
+var _vel_btn: IconButton    # toggle velocity editing (notes lane / drum hits)
+var _pan_btn: IconButton    # toggle pan draw lane (notes) / pan canvas (drums)
+var _move_btn: IconButton   # select notes and move them
+var _copy_btn: IconButton   # select notes and copy / paste them
 var _auto_loop := false     # the loop preview was started by drawing (velocity / pan), not by the play button
 var _hear_btn: IconButton
 var _hear_all_btn: IconButton
@@ -118,10 +120,9 @@ func _init() -> void:
 
 	_pan_designer = PanDesigner.new()
 	add_child(_pan_designer)
-	_pan_designer.popup_hide.connect(_loop_off_after_drawing)
-	_roll.pan_requested.connect(func():
-		if track:
-			_pan_designer.open_for(track))
+	_pan_designer.popup_hide.connect(func():
+		_pan_btn.set_pressed_no_signal(false)
+		_loop_off_after_drawing())
 	_delete_dialog = ConfirmationDialog.new()
 	_delete_dialog.dialog_text = "Delete this track and its notes?"
 	_delete_dialog.confirmed.connect(_delete_track)
@@ -145,7 +146,7 @@ func _ready() -> void:
 
 
 # ---------------------------------------------------------- building
-func _icon(icon: String, tip: String, size: Vector2 = Vector2(28, 28)) -> IconButton:
+func _icon(icon: String, tip: String, size: Vector2 = Vector2(24, 24)) -> IconButton:
 	return IconButton.create(icon, tip, size)
 
 
@@ -163,17 +164,17 @@ func _build_keys_row() -> void:
 	_roll_row.add_theme_constant_override("separation", 5)
 	_roll_row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_roll_row.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	var up := _icon("up", "Scroll up: lower octave (notes and keyboard)", Vector2(26, 26))
+	var up := _icon("up", "Scroll up: lower octave (notes and keyboard)", Vector2(22, 22))
 	up.pressed.connect(func(): _shift_octave(-12))
-	_follow_btn = _icon("transpose", "When on, the notes move along with the octave", Vector2(26, 26))
+	_follow_btn = _icon("transpose", "When on, the notes move along with the octave", Vector2(22, 22))
 	_follow_btn.toggle_mode = true
-	var down := _icon("down", "Scroll down: higher octave (notes and keyboard)", Vector2(26, 26))
+	var down := _icon("down", "Scroll down: higher octave (notes and keyboard)", Vector2(22, 22))
 	down.pressed.connect(func(): _shift_octave(12))
 	_roll_row.add_child(_rail([up, _follow_btn, down]))
 	_roll_row.add_child(_roll)
-	var zoom_in := _icon("zoomin", "Zoom in: bigger notes, longer keys, fewer bars", Vector2(26, 26))
+	var zoom_in := _icon("zoomin", "Zoom in: bigger notes, longer keys, fewer bars", Vector2(22, 22))
 	zoom_in.pressed.connect(func(): _zoom_roll(1))
-	var zoom_out := _icon("zoomout", "Zoom out: smaller notes, a longer keyboard, more bars", Vector2(26, 26))
+	var zoom_out := _icon("zoomout", "Zoom out: smaller notes, a longer keyboard, more bars", Vector2(22, 22))
 	zoom_out.pressed.connect(func(): _zoom_roll(-1))
 	_roll_row.add_child(_rail([zoom_in, zoom_out]))
 
@@ -202,14 +203,14 @@ func _build_header() -> void:
 	_header = HBoxContainer.new()
 	_header.add_theme_constant_override("separation", 4)
 	add_child(_header)
-	var back := _icon("back", "Back to the song", Vector2(30, 30))
+	var back := _icon("back", "Back to the song", Vector2(26, 26))
 	back.pressed.connect(_go_back)
 	_header.add_child(back)
 	# The track's name lives in the song view; here the instrument is shown by its colour.
 	_title_lbl = Label.new()  # never shown: kept only so tools/tests can read it
 	_title_lbl.visible = false
 	_header.add_child(_title_lbl)
-	_swap_btn = _icon("swap", "Change the instrument", Vector2(30, 30))
+	_swap_btn = _icon("swap", "Change the instrument", Vector2(26, 26))
 	_swap_btn.pressed.connect(func(): change_instrument_requested.emit())
 	_header.add_child(_swap_btn)
 	_melodic_only.append(_swap_btn)
@@ -234,34 +235,37 @@ func _build_tools() -> void:
 	_bar_label.add_theme_font_size_override("font_size", 12)
 	var nxt := _icon("next", "Later bars")
 	nxt.pressed.connect(func(): _set_bar(_roll.bar + 1))
-	_note_step_btn = _icon("steps", "Steps in each bar: 16, 32 or 64. The bars on screen stay the same", Vector2(58, 26))
-	_note_step_btn.glyph.icon_left = true
+	_note_step_btn = _icon("steps", "Steps in each bar: 16, 32 or 64. The bars on screen stay the same", Vector2(34, 22))
+	_note_step_btn.icon_name = ""  # number only — clearer than icon + text
 	_note_step_btn.add_theme_font_size_override("font_size", 12)
-	_note_step_btn.text = "  16"
+	_note_step_btn.text = "16"
 	_note_step_btn.pressed.connect(_cycle_note_steps)
 	var clear := _icon("clear", "Clear the notes in the bars on screen")
 	clear.pressed.connect(func():
 		track.clear_range(_roll.base_step(), _roll.base_step() + _roll.steps)
 		TrackManager.notify_changed(track))
-	var select_btn := _icon("select", "Select: drag a box around notes (they are copied), then click where they should go. Drag a selected note, or use the arrow keys, to move them")
-	select_btn.toggle_mode = true
-	select_btn.toggled.connect(func(on: bool): _roll.select_mode = on)
-	for c in [_undo_btn, _redo_btn, prev, _bar_label, nxt, _note_step_btn, select_btn, clear]:
+	_move_btn = _icon("moveall", "Select and move: drag a box around notes, then drag them (or use the arrow keys)", Vector2(22, 22))
+	_move_btn.toggle_mode = true
+	_move_btn.toggled.connect(func(on: bool): _set_select_kind("move" if on else ""))
+	_copy_btn = _icon("copy", "Select and copy: drag a box around notes, then click where to paste", Vector2(22, 22))
+	_copy_btn.toggle_mode = true
+	_copy_btn.toggled.connect(func(on: bool): _set_select_kind("copy" if on else ""))
+	for c in [_undo_btn, _redo_btn, prev, _bar_label, nxt, _note_step_btn, _move_btn, _copy_btn, clear]:
 		if c is IconButton and c != _note_step_btn:
-			c.custom_minimum_size = Vector2(26, 26)
+			c.custom_minimum_size = Vector2(22, 22)
 		_tools.add_child(c)
 		if c != _undo_btn and c != _redo_btn:  # undo / redo work for loops too
 			_melodic_only.append(c)
 
 	# Loop builder: icon-only buttons.  [play] [add layer] [ready-made patterns] [length]
-	_loop_btn = _icon("play", "Play the loop (repeats while you edit)", Vector2(44, 34))
+	_loop_btn = _icon("play", "Play the loop (repeats while you edit)", Vector2(36, 28))
 	_loop_btn.glyph.glyph_color = Color.WHITE
 	StudioTheme.tint_button(_loop_btn, Color("2ed3b7").darkened(0.45))
 	_loop_btn.pressed.connect(func(): if track: TrackManager.loop_preview(track))
 	_tools.add_child(_loop_btn)
 	_drum_only.append(_loop_btn)
 
-	var add_layer := _icon("plus", "Add a layer: any instrument joins this drum rack", Vector2(44, 34))
+	var add_layer := _icon("plus", "Add a layer: any instrument joins this drum rack", Vector2(36, 28))
 	add_layer.glyph.glyph_color = Color.WHITE
 	StudioTheme.tint_button(add_layer, StudioTheme.ACCENT)
 	add_layer.pressed.connect(func(): add_layer_requested.emit())
@@ -275,14 +279,14 @@ func _build_tools() -> void:
 	starter_menu.index_pressed.connect(func(i: int):
 		TrackManager.load_drum_starter(track, starter_menu.get_item_text(i)))
 	add_child(starter_menu)
-	var starter := _icon("patterns", "Ready-made beats", Vector2(44, 34))
+	var starter := _icon("patterns", "Ready-made beats", Vector2(36, 28))
 	starter.pressed.connect(func():
 		var gp := starter.get_global_rect().position + Vector2(0, starter.size.y + 2)
 		starter_menu.popup_on_parent(Rect2i(Vector2i(gp), Vector2i(1, 1))))
 	_tools.add_child(starter)
 	_drum_only.append(starter)
 
-	_len_btn = _icon("steps", "Steps in the bar: tap to switch between 16, 32 and 64 (finer hits; it stays one bar)", Vector2(70, 34))
+	_len_btn = _icon("steps", "Steps in the bar: tap to switch between 16, 32 and 64 (finer hits; it stays one bar)", Vector2(60, 28))
 	_len_btn.glyph.icon_left = true
 	_len_btn.add_theme_font_size_override("font_size", 13)
 	_len_btn.pressed.connect(func():
@@ -294,33 +298,24 @@ func _build_tools() -> void:
 
 	# beatbox: four clicks, then make drum sounds with your mouth for one pass of the loop;
 	# kicks, snares and hi-hats are recognised and placed on the grid
-	_beat_btn = _icon("mic", "Beatbox: after four clicks, beatbox one loop into the mic (boom = kick, pf = snare, ts = hi-hat)", Vector2(44, 34))
+	_beat_btn = _icon("mic", "Beatbox: tap, then beatbox when ready (boom = kick, pf = snare, ts = hi-hat)", Vector2(36, 28))
 	_beat_btn.glyph.glyph_color = Color.WHITE
 	StudioTheme.tint_button(_beat_btn, Color("e5484d"))
 	_beat_btn.pressed.connect(_on_beatbox_pressed)
 	_tools.add_child(_beat_btn)
 	_drum_only.append(_beat_btn)
 
-	# velocity: while on, the hits are bars; drag up/down on a hit to set how hard it is played
-	_vel_btn = _icon("velocity", "Velocity: when on, drag up or down on a hit to make it softer or harder", Vector2(44, 34))
+	# velocity: melodic = lane under the notes; drums = hit strength on the grid
+	_vel_btn = _icon("velocity", "Velocity: tap to edit how hard each note or hit is played", Vector2(24, 24))
 	_vel_btn.toggle_mode = true
-	_vel_btn.toggled.connect(func(on: bool):
-		_grid.velocity_mode = on
-		if on:
-			_loop_on_for_drawing()  # hear the loop while you shape it
-		else:
-			_loop_off_after_drawing())
+	_vel_btn.toggled.connect(_on_velocity_toggled)
 	_tools.add_child(_vel_btn)
-	_drum_only.append(_vel_btn)
 
-	# pan: draw where the whole loop sits between the speakers over time
-	var pan_btn := _icon("pan", "Pan: draw where the loop sits between the left and right speaker", Vector2(44, 34))
-	pan_btn.pressed.connect(func():
-		if track:
-			_pan_designer.open_for(track)
-			_loop_on_for_drawing())  # hear the loop while you draw the pan
-	_tools.add_child(pan_btn)
-	_drum_only.append(pan_btn)
+	# pan: melodic = draw lane under the notes (like velocity); drums = popup canvas
+	_pan_btn = _icon("pan", "Pan: tap to draw where the sound sits between the left and right speaker", Vector2(24, 24))
+	_pan_btn.toggle_mode = true
+	_pan_btn.toggled.connect(_on_pan_toggled)
+	_tools.add_child(_pan_btn)
 
 
 func _build_record_area() -> void:
@@ -329,18 +324,14 @@ func _build_record_area() -> void:
 	_peak.custom_minimum_size = Vector2(0, 30)
 
 	# Record and Play sit in the toolbar, right after the note tools.
-	_rec_btn = _icon("record", "Record: choose voice or piano", Vector2(40, 28))
+	_rec_btn = _icon("record", "Record: choose voice or piano", Vector2(34, 24))
 	_rec_btn.glyph.glyph_color = Color.WHITE
 	StudioTheme.tint_button(_rec_btn, Color("e5484d"))
 	_rec_btn.pressed.connect(_on_record_pressed)
-	_hear_btn = _icon("play", "Play the bars on screen", Vector2(28, 28))
+	_hear_btn = _icon("play", "Play the bars on screen (loops)", Vector2(24, 24))
 	_hear_btn.pressed.connect(func(): _audition(false))
-	_hear_all_btn = _icon("playall", "Play the whole tune", Vector2(28, 28))
+	_hear_all_btn = _icon("playall", "Play the whole tune (loops)", Vector2(24, 24))
 	_hear_all_btn.pressed.connect(func(): _audition(true))
-	_along_btn = _icon("along", "Play along: the other tracks play while you record (voice: use headphones so the mic does not pick them up)", Vector2(28, 28))
-	_along_btn.toggle_mode = true
-	_tools.add_child(_along_btn)
-	_melodic_only.append(_along_btn)
 	_tools.add_child(_rec_btn)
 	_tools.add_child(_hear_btn)
 	_tools.add_child(_hear_all_btn)
@@ -388,7 +379,7 @@ func _choice_card(icon: String, title: String, sub: String, keys: bool) -> Butto
 	ic.custom_minimum_size = Vector2(0, 58)
 	ic.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var g := IconGlyph.new(icon)
-	g.glyph_scale = 0.4
+	g.glyph_scale = 0.28
 	ic.add_child(g)
 	v.add_child(ic)
 	var t := Label.new()
@@ -435,8 +426,15 @@ func open(t: Track) -> void:
 		_focus_octave()
 		_set_bar(0)
 	_peak.clear()
-	_peak.set_message("" if drums or not t.notes.is_empty() else "Draw on the grid. Turn on Select to copy and move notes.")
-	_vel_btn.button_pressed = false  # a new loop opens in normal (add/remove hits) mode
+	_peak.set_message("")
+	_vel_btn.set_pressed_no_signal(false)
+	_pan_btn.set_pressed_no_signal(false)
+	_move_btn.set_pressed_no_signal(false)
+	_copy_btn.set_pressed_no_signal(false)
+	_roll.show_velocity = false
+	_roll.show_pan = false
+	_roll.select_kind = ""
+	_grid.velocity_mode = false
 	_set_rec_state(Rec.IDLE)
 	_refresh_name()
 	_apply_orientation()
@@ -610,21 +608,70 @@ func _zoom_roll(direction: int) -> void:
 func _cycle_note_steps() -> void:
 	var n: int = {16: 32, 32: 64, 64: 16}[_roll.steps_per_bar]
 	_roll.steps_per_bar = n
-	_note_step_btn.text = "  %d" % n
+	_note_step_btn.text = "%d" % n
+
+
+func _on_velocity_toggled(on: bool) -> void:
+	if track != null and track.kind == "drums":
+		_grid.velocity_mode = on
+		if on:
+			_pan_btn.set_pressed_no_signal(false)
+			_pan_designer.hide()
+			_loop_on_for_drawing()
+		else:
+			_loop_off_after_drawing()
+	else:
+		_roll.show_velocity = on
+		if on:
+			_pan_btn.set_pressed_no_signal(false)
+		_grid.velocity_mode = false
+
+
+func _on_pan_toggled(on: bool) -> void:
+	if track == null:
+		return
+	if track.kind == "drums":
+		if on:
+			_vel_btn.set_pressed_no_signal(false)
+			_grid.velocity_mode = false
+			_pan_designer.open_for(track)
+			_loop_on_for_drawing()
+		else:
+			_pan_designer.hide()
+			_loop_off_after_drawing()
+	else:
+		_roll.show_pan = on
+		if on:
+			_vel_btn.set_pressed_no_signal(false)
+			_roll.show_velocity = false
+
+
+## Move and copy are exclusive: turning one on turns the other off.
+func _set_select_kind(kind: String) -> void:
+	if kind == "move":
+		_copy_btn.set_pressed_no_signal(false)
+	elif kind == "copy":
+		_move_btn.set_pressed_no_signal(false)
+	elif kind == "":
+		_move_btn.set_pressed_no_signal(false)
+		_copy_btn.set_pressed_no_signal(false)
+	_roll.select_kind = kind
 
 
 func _shortcuts_open() -> bool:
 	return visible and track != null and track.kind == "melodic" and _rec == Rec.IDLE
 
 
-## Selecting is copying: the box is drawn, the notes are copied, and the paste pointer shows.
+## Copy mode: the box is drawn, the notes are copied, and the paste pointer shows.
 func _on_notes_selected() -> void:
+	if _roll.select_kind != "copy":
+		return
 	var n := TrackManager.copy_notes(_roll.selection)
 	_peak.set_message("Copied %d note%s. Click where they should go; click again to paste more." % [n, "" if n == 1 else "s"])
 
 
 ## A click on the grid pastes the copied notes there. The pointer stays, so more clicks paste
-## again, until the Select button is pressed again (or a new box is drawn to copy something else).
+## again, until Copy is turned off (or a new box is drawn to copy something else).
 ## The newest pasted notes stay selected so they can be nudged into place.
 func _on_paste_clicked(step: int, midi: int) -> void:
 	if track == null or track.kind != "melodic" or TrackManager.note_clip.is_empty():
@@ -633,7 +680,7 @@ func _on_paste_clicked(step: int, midi: int) -> void:
 	var n := TrackManager.paste_notes(track, step, midi)
 	_roll.selection = TrackManager.last_pasted.duplicate()
 	_roll.queue_redraw()
-	_peak.set_message("Pasted %d note%s. Click to paste again, or press Select to finish." % [n, "" if n == 1 else "s"])
+	_peak.set_message("Pasted %d note%s. Click to paste again, or turn Copy off." % [n, "" if n == 1 else "s"])
 
 
 ## If the selection moved before it was pasted, what gets pasted is the moved notes.
@@ -738,13 +785,12 @@ func _apply_orientation() -> void:
 	for c in [_tools, _roll_row, _grid, _peak, _keys, _keys_row, _body, _left, _side]:
 		_detach(c)
 	_keys_row.add_child(_keys)
-	_peak.custom_minimum_size = Vector2(0, 22)
-	_peak.size_flags_vertical = Control.SIZE_FILL
 	_tools.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_tools.custom_minimum_size = Vector2(0, 28)
+	_roll_row.size_flags_stretch_ratio = 1.0
 	if _land:
 		# ONE top row: back, instrument and all the tools; then the big note view / drum grid,
-		# a slim status strip, and the keyboard.
+		# a slim status strip (only while recording), and the keyboard.
 		_header.add_child(_tools)
 		add_child(_body)
 		_body.add_child(_left)
@@ -752,9 +798,9 @@ func _apply_orientation() -> void:
 		_left.add_child(_grid)
 		_left.add_child(_peak)
 		_left.add_child(_keys_row)
-		_roll.custom_minimum_size = Vector2(0, 110)
-		_keys_row.custom_minimum_size = Vector2(0, 62)
-		_keys_row.size_flags_stretch_ratio = 0.45
+		_roll.custom_minimum_size = Vector2(0, 140)
+		_keys_row.custom_minimum_size = Vector2(0, 56)
+		_keys_row.size_flags_stretch_ratio = 0.28
 		_grid.custom_minimum_size = Vector2(0, 150)
 	else:
 		add_child(_tools)
@@ -762,10 +808,11 @@ func _apply_orientation() -> void:
 		add_child(_grid)
 		add_child(_peak)
 		add_child(_keys_row)
-		_roll.custom_minimum_size = Vector2(0, 150)
-		_keys_row.custom_minimum_size = Vector2(0, 96)
-		_keys_row.size_flags_stretch_ratio = 0.4
+		_roll.custom_minimum_size = Vector2(0, 180)
+		_keys_row.custom_minimum_size = Vector2(0, 80)
+		_keys_row.size_flags_stretch_ratio = 0.28
 		_grid.custom_minimum_size = Vector2(0, 220)
+	_refresh_peak_strip()
 	_sync_roll_to_keys()
 
 # ------------------------------------------------------------ live keys
@@ -778,8 +825,11 @@ func _on_key_pressed(midi: int, velocity: float) -> void:
 		AudioEngine.note_off(_held_ids[midi])
 	_held_ids[midi] = AudioEngine.note_on(def, midi, velocity, track.preset, TrackManager.bus_of(track))
 	_roll.set_live(midi, true)  # light up the note in the editor
+	# Armed and waiting: the first key starts the take (no fixed count-in delay).
+	if _rec == Rec.COUNT_IN and _use_keys:
+		_begin_keys_take()
 	if _rec == Rec.RECORDING and _use_keys:
-		var t := _elapsed()
+		var t := maxf(_elapsed(), 0.0)
 		_close_key_note(midi, t)  # same key struck again (e.g. two fingers): end the first one
 		_key_down[midi] = {"t": t, "vel": velocity}
 
@@ -789,8 +839,8 @@ func _on_key_released(midi: int) -> void:
 		AudioEngine.note_off(_held_ids[midi])
 		_held_ids.erase(midi)
 	_roll.set_live(midi, false)
-	if _rec == Rec.RECORDING and _use_keys:
-		_close_key_note(midi, _elapsed())
+	if _use_keys and (_rec == Rec.RECORDING or _key_down.has(midi)):
+		_close_key_note(midi, maxf(_elapsed(), 0.0))
 
 
 func _on_key_moved(from_midi: int, to_midi: int) -> void:
@@ -802,8 +852,8 @@ func _on_key_moved(from_midi: int, to_midi: int) -> void:
 	_roll.set_live(from_midi, false)
 	_roll.set_live(to_midi, true)
 	AudioEngine.glide(id, to_midi, 0.14)
-	if _rec == Rec.RECORDING and _use_keys:  # a glide continues as the new pitch
-		var t := _elapsed()
+	if _key_down.has(from_midi):  # a glide continues as the new pitch
+		var t := maxf(_elapsed(), 0.0)
 		var vel: float = _key_down[from_midi].vel if _key_down.has(from_midi) else 0.7
 		_close_key_note(from_midi, t)
 		_key_down[to_midi] = {"t": t, "vel": vel}
@@ -827,7 +877,7 @@ func _set_rec_state(s: Rec) -> void:
 			_rec_btn.disabled = false
 		Rec.COUNT_IN:
 			_rec_btn.icon_name = "close"
-			_rec_btn.tooltip_text = "Cancel"
+			_rec_btn.tooltip_text = "Cancel (waiting for you to play or sing)"
 		Rec.RECORDING:
 			_rec_btn.icon_name = "stop"
 			_rec_btn.tooltip_text = "Stop recording"
@@ -839,13 +889,22 @@ func _set_rec_state(s: Rec) -> void:
 		_beatbox = false
 	var beat_icons := {Rec.IDLE: "mic", Rec.COUNT_IN: "close", Rec.RECORDING: "stop", Rec.PROCESSING: "wave"}
 	_beat_btn.icon_name = beat_icons[s]
-	_beat_btn.tooltip_text = "Beatbox: after four clicks, beatbox one loop into the mic (boom = kick, pf = snare, ts = hi-hat)" if s == Rec.IDLE else "Stop / cancel the beatbox"
+	_beat_btn.tooltip_text = "Beatbox: tap, then beatbox when ready (boom = kick, pf = snare, ts = hi-hat)" if s == Rec.IDLE else "Stop / cancel the beatbox"
 	_beat_btn.disabled = s == Rec.PROCESSING
 	_hear_btn.disabled = s != Rec.IDLE
 	_hear_all_btn.disabled = s != Rec.IDLE
 	_peak.level = 0.0
 	if s == Rec.IDLE or s == Rec.PROCESSING:
-		TrackManager.end_backing()  # stop the play-along tracks and un-mute this one
+		TrackManager.end_backing()
+	_refresh_peak_strip()
+
+
+## Status strip only while recording — keeps that space for the note grid otherwise.
+func _refresh_peak_strip() -> void:
+	var need := _rec != Rec.IDLE
+	_peak.visible = need
+	_peak.custom_minimum_size = Vector2(0, 22 if need else 0)
+	_peak.size_flags_vertical = Control.SIZE_FILL if need else 0
 
 
 func _on_record_pressed() -> void:
@@ -893,12 +952,10 @@ func _start_beatbox() -> void:
 	_beatbox = true
 	_peak.clear()
 	_set_rec_state(Rec.COUNT_IN)
-	if not await _count_in():
+	if not await _wait_for_voice_start("Beatbox when ready..."):
 		return
-	_rec_started_ms = Time.get_ticks_msec()
-	_skip_samples = RecordingManager.samples.size()  # drop the click bleed from the mic
 	_set_rec_state(Rec.RECORDING)
-	_peak.set_message("Beatbox the loop now!  (%d steps at %d BPM)" % [track.grid_steps(), int(Transport.bpm)])
+	_peak.set_message("Beatboxing...  (%d steps at %d BPM)" % [track.grid_steps(), int(Transport.bpm)])
 	var limit := track.pattern_steps() * Transport.seconds_per_step() + 0.25  # a little tail for a late last hit
 	while _rec == Rec.RECORDING and _beatbox:
 		await get_tree().process_frame
@@ -913,7 +970,7 @@ func _finish_beatbox(cut: PackedFloat32Array, rate: int) -> void:
 	_peak.set_message("Finding the beats...")
 	await get_tree().process_frame
 	var hits := BeatboxAnalyzer.analyze(cut, rate)
-	var latency := AudioServer.get_output_latency() + 0.03
+	var latency := minf(AudioServer.get_output_latency(), 0.06)
 	# the grid may be finer than a 16th note: hits snap to its cells (res cells per 16th = res times the tempo)
 	var steps := BeatboxAnalyzer.to_steps(hits, Transport.bpm * track.drum_res, track.grid_steps(), latency)
 	var vels := BeatboxAnalyzer.to_velocities(hits, Transport.bpm * track.drum_res, track.grid_steps(), latency)
@@ -933,12 +990,12 @@ func _start_recording() -> void:
 		var err := RecordingManager.start()
 		if err != "":
 			_peak.set_message(err)
+			_refresh_peak_strip()
 			return
 	_rec_base_step = _roll.base_step()
 	_peak.clear()
-	# Play along: with the button on, the other tracks play while you record (voice or piano).
-	var backing: bool = _along_btn.button_pressed and TrackManager.has_other_content(track)
 	_set_rec_state(Rec.COUNT_IN)
+	_rec_started_ms = 0
 	if _use_keys:
 		# A key press whose sound is not rendered yet would block the main thread while it
 		# bakes and corrupt the recorded timing, so wait until every visible key is ready.
@@ -949,60 +1006,43 @@ func _start_recording() -> void:
 			await get_tree().process_frame
 		if _rec != Rec.COUNT_IN:
 			return
-	if backing:  # bake the other tracks' sounds now, so nothing stalls once the take starts
-		_peak.set_message("Getting the other tracks ready...")
-		await TrackManager.prepare_backing(track)
-		if _rec != Rec.COUNT_IN:
-			TrackManager.end_backing()
-			return
-	if not await _count_in():
-		return
-	_rec_started_ms = Time.get_ticks_msec()
-	if _use_keys:
 		_key_down.clear()
 		_key_notes.clear()
-		_set_rec_state(Rec.RECORDING)
-		_peak.set_message("")
-		if backing:
-			TrackManager.start_backing(_rec_base_step)  # the song plays from the bar you are recording
-		else:
-			_metronome()  # with the other tracks playing there is already a beat to follow
-	else:
-		_skip_samples = RecordingManager.samples.size()  # drop the click bleed from the mic
-		_set_rec_state(Rec.RECORDING)
-		_peak.set_message("")
-		if backing:  # started right after the mic mark, so the playback is not in the take's start
-			TrackManager.start_backing(_rec_base_step)
+		_peak.set_message("Play when ready...")
+		return  # first key press starts the take via _begin_keys_take()
+	if not await _wait_for_voice_start("Sing or hum when ready..."):
+		return
+	_set_rec_state(Rec.RECORDING)
+	_peak.set_message("")
 	_watch_length()
 
 
-## Four clicks. Returns false if the user cancelled.
-func _count_in() -> bool:
-	var beat := 60.0 / Transport.bpm
-	var click := InstrumentManager.get_by_id("hat")
-	for i in 4:
-		if _rec != Rec.COUNT_IN:
-			return false
-		_peak.set_message("Get ready...  %d" % (4 - i))
-		AudioEngine.note_on(click, 60, 1.0 if i == 0 else 0.6)
-		await get_tree().create_timer(beat).timeout
-	return _rec == Rec.COUNT_IN
+## First piano key while armed: start the take clock on that press (no countdown).
+func _begin_keys_take() -> void:
+	if _rec != Rec.COUNT_IN or not _use_keys:
+		return
+	_rec_started_ms = Time.get_ticks_msec()
+	_set_rec_state(Rec.RECORDING)
+	_peak.set_message("")
+	_watch_length()
 
 
-## A soft click on every beat while recording keys (not for voice: the mic would hear it).
-func _metronome() -> void:
-	var beat_ms := int(60000.0 / Transport.bpm)
-	var click := InstrumentManager.get_by_id("hat")
-	var n := 1
-	while _rec == Rec.RECORDING and _use_keys:
-		var due := _rec_started_ms + n * beat_ms
-		var wait := (due - Time.get_ticks_msec()) / 1000.0
-		if wait > 0.0:
-			await get_tree().create_timer(wait).timeout
-		if _rec != Rec.RECORDING:
-			return
-		AudioEngine.note_on(click, 60, 0.45 if n % 4 != 0 else 0.75)
-		n += 1
+## Wait until the mic hears sound, then mark that as the take start. Returns false if cancelled.
+func _wait_for_voice_start(hint: String) -> bool:
+	_peak.set_message(hint)
+	var loud_frames := 0
+	while _rec == Rec.COUNT_IN:
+		await get_tree().process_frame
+		if _peak.level >= 0.06:
+			loud_frames += 1
+		else:
+			loud_frames = 0
+		if loud_frames >= 2:  # a short blip of noise should not start the take
+			var pad := int(0.04 * maxf(RecordingManager.rate, 1.0))
+			_skip_samples = maxi(0, RecordingManager.samples.size() - pad)
+			_rec_started_ms = Time.get_ticks_msec()
+			return true
+	return false
 
 
 ## Stop automatically at the end of the song.
@@ -1115,7 +1155,8 @@ func _on_transcribed(found: Array) -> void:
 			bpm = est
 			Transport.bpm = est
 			msg = " Tempo set to %d BPM." % int(est)
-	var latency := AudioServer.get_output_latency() + 0.03
+	# Mild latency only — the old +30 ms pad was shifting the first notes off the take.
+	var latency := minf(AudioServer.get_output_latency(), 0.06)
 	var in_scale := Callable()  # no snapping: the notes are exactly what was sung
 	var notes := HumTranscriber.to_track_notes(found, bpm, _rec_base_step, latency, in_scale)
 	if notes.is_empty():
@@ -1161,12 +1202,9 @@ func _process(_d: float) -> void:
 			_roll.playhead = -1.0
 			_refresh_hear_icons()
 			return
-		var pos := float(_aud_from) + (Time.get_ticks_msec() / 1000.0 - _aud_t0) / step_sec
-		if pos >= _aud_end + 1.0:  # played to the end
-			_aud_active = false
-			_roll.playhead = -1.0
-			_refresh_hear_icons()
-			return
+		var span := maxf(_aud_end - float(_aud_from), 1.0)
+		var raw := float(_aud_from) + (Time.get_ticks_msec() / 1000.0 - _aud_t0) / step_sec
+		var pos := float(_aud_from) + fposmod(raw - float(_aud_from), span)
 		_roll.playhead = pos
 		if _aud_whole and (pos < _roll.base_step() or pos >= _roll.base_step() + _roll.steps):
 			_set_bar(int(pos) / _roll.steps)  # keep the playhead on screen
@@ -1214,27 +1252,33 @@ func _audition(whole: bool = false) -> void:
 	if token != _audition_token:
 		return
 	var step_sec := 60.0 / Transport.bpm / 4.0
-	var t0 := Time.get_ticks_msec() / 1000.0
-	# the moving playhead (see _process): runs from the first bar played to the end of the last note
 	var last_end := float(from_step)
 	for n in list:
 		last_end = maxf(last_end, float(n.start + n.len))
 	_aud_token = token
-	_aud_t0 = t0
 	_aud_from = from_step
 	_aud_end = float(to_step) if not whole else last_end
 	_aud_whole = whole
 	_aud_active = true
 	_refresh_hear_icons()
-	for n in list:
-		var due: float = (maxf(float(n.start) + float(n.get("off", 0.0)), float(from_step)) - from_step) * step_sec
-		var wait := due - (Time.get_ticks_msec() / 1000.0 - t0)
-		if wait > 0.0:
-			await get_tree().create_timer(wait).timeout
+	# Loop until the user stops: each pass resets the playhead clock.
+	while token == _audition_token:
+		var t0 := Time.get_ticks_msec() / 1000.0
+		_aud_t0 = t0
+		for n in list:
+			var due: float = (maxf(float(n.start) + float(n.get("off", 0.0)), float(from_step)) - from_step) * step_sec
+			var wait := due - (Time.get_ticks_msec() / 1000.0 - t0)
+			if wait > 0.0:
+				await get_tree().create_timer(wait).timeout
+			if token != _audition_token:
+				return
+			var id := AudioEngine.note_on(def, n.midi, n.vel, track.preset, TrackManager.bus_of(track), float(n.get("cents", 0.0)))
+			get_tree().create_timer(maxf(float(n.get("dur", n.len)) * step_sec * 0.97, 0.08)).timeout.connect(AudioEngine.note_off.bind(id))
+		var loop_wait := (_aud_end - float(from_step)) * step_sec - (Time.get_ticks_msec() / 1000.0 - t0)
+		if loop_wait > 0.0:
+			await get_tree().create_timer(loop_wait).timeout
 		if token != _audition_token:
 			return
-		var id := AudioEngine.note_on(def, n.midi, n.vel, track.preset, TrackManager.bus_of(track), float(n.get("cents", 0.0)))
-		get_tree().create_timer(maxf(float(n.get("dur", n.len)) * step_sec * 0.97, 0.08)).timeout.connect(AudioEngine.note_off.bind(id))
 
 
 func _all_cached(notes: Array) -> bool:

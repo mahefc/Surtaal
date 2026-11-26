@@ -4,16 +4,13 @@ extends Control
 ## `bar` is the page index (page = steps columns).
 ## Always a sketch pad: tap an empty cell for a new note (drag right for length, up/down for
 ## pitch); tap a note to delete it; drag a note to move it; drag its right end to resize.
-## With Select on: drag a box around notes and they are copied right away. Then click a cell
-## and they are pasted there; keep clicking to paste again, until Select is turned off.
-## Drag a selected note to move all of them. Arrow keys (handled by the editor) move them too.
+## Select-move: box notes, then drag (or arrow keys) to slide them.
+## Select-copy: box notes to copy, then click to paste; keep clicking to paste again.
 ## Editing makes no sound.
 ## Notes are coloured by velocity (soft blue ... loud red), see vel_color().
-## The velocity lane below edits note velocity by dragging vertically.
-## The "Vel" label spot is the pan button (tap it to draw the pan).
+## Velocity / pan lanes (toolbar toggles) sit under the notes when switched on.
 
-signal pan_requested
-## A box was drawn around notes: they are `selection` now, and the editor copies them.
+## A box was drawn around notes in copy mode: they are `selection` now, ready to paste.
 signal selection_made
 ## The user clicked a cell while notes were copied: paste them with their first note on it.
 signal paste_requested(step: int, midi: int)
@@ -22,9 +19,9 @@ signal selection_moved
 ## Rows are tinted by the current scale/tuning (TuningManager).
 
 const ZOOMS := [16, 32, 64]
-const LABEL_W := 40.0
+const LABEL_W := 36.0
 const VEL_H := 40.0
-const MIN_ROW_H := 12.0
+const MIN_ROW_H := 14.0
 const TAP_SLOP := 9.0  # a finger never stays perfectly still: small wobbles still count as a tap
 const NOTE_NAMES := ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 const BLACK_PCS := [1, 3, 6, 8, 10]
@@ -96,26 +93,43 @@ var rec_notes: Array = []:
 		rec_notes = v
 		queue_redraw()
 
+## Show the velocity lane under the notes (toolbar toggle).
+var show_velocity := false:
+	set(v):
+		show_velocity = v
+		if v:
+			show_pan = false
+		_layout()
+
+## Show the pan lane under the notes (toolbar toggle): draw L/R over the bars on screen.
+var show_pan := false:
+	set(v):
+		show_pan = v
+		if v:
+			show_velocity = false
+		_layout()
+
 ## Playhead for audition / recording, in (fractional) song steps; -1 = hidden.
 var playhead := -1.0:
 	set(v):
 		playhead = v
 		queue_redraw()
 
-## Select mode: drag a box to choose (and copy) notes. Drawing is off while this is on.
-var select_mode := false:
+## "" = draw notes; "move" = box-select then drag; "copy" = box-select then click to paste.
+var select_kind := "":
 	set(v):
-		select_mode = v
+		select_kind = v
 		_drag = {}
-		if not v:
+		if v == "":
 			selection = []
+			armed = false
+		elif v == "move":
 			armed = false
 		queue_redraw()
 
 ## Notes chosen with the box (dictionaries from the track).
 var selection: Array = []
-## True while notes are copied: every click on the grid pastes them there. Stays true until
-## Select is turned off. Only then is the paste pointer (a preview under the mouse) shown.
+## True while notes are copied (copy mode): every click on the grid pastes them there.
 var armed := false:
 	set(v):
 		armed = v
@@ -126,8 +140,9 @@ var armed := false:
 var _hover := Vector2i(-1, -1)  # cell under the mouse (x = song step, y = row); -1 = none
 var _rows := 12
 var _row_h := 24.0
-var _drag := {}  # {mode: "move"|"resize"|"draw"|"vel", note, grab}
+var _drag := {}  # {mode: "move"|"resize"|"draw"|"vel"|"pan"|"box"|"group", ...}
 var _preview_id := -1
+var _pan_last := Vector2(-1, 0)  # last pan stroke sample (step, pan)
 
 
 func _init() -> void:
@@ -171,13 +186,18 @@ func visible_notes() -> Array:
 	return out
 
 
+## Height reserved under the note rows for velocity or pan (0 when both hidden).
+func _lane_h() -> float:
+	return VEL_H if show_velocity or show_pan else 0.0
+
+
 ## How many note rows fit at a readable height.
 func rows_that_fit() -> int:
-	return clampi(int((size.y - VEL_H - 6.0) / MIN_ROW_H), 4, 48)
+	return clampi(int((size.y - _lane_h() - 4.0) / MIN_ROW_H), 4, 48)
 
 
 func _layout() -> void:
-	var avail := maxf(size.y - VEL_H - 6.0, 1.0)
+	var avail := maxf(size.y - _lane_h() - 4.0, 1.0)
 	_rows = fixed_rows if fixed_rows > 0 else rows_that_fit()
 	_row_h = avail / _rows
 	queue_redraw()
@@ -226,15 +246,19 @@ func _cell(pos: Vector2) -> Vector2i:  # x = absolute song step
 	return Vector2i(base_step() + x, r)
 
 
-func _vel_rect() -> Rect2:
-	return Rect2(LABEL_W, size.y - VEL_H, size.x - LABEL_W, VEL_H)
+func _lane_rect() -> Rect2:
+	return Rect2(LABEL_W, size.y - _lane_h(), size.x - LABEL_W, _lane_h())
 
 
 func _draw() -> void:
 	var font := ThemeDB.fallback_font
 	var cw := _cw()
 	var base := base_step()
-	var label_size := 11 if _row_h >= 18.0 else 9
+	var lh := _lane_h()
+	var note_bottom := size.y - lh - (2.0 if lh > 0.0 else 0.0)
+	# Smaller type with breathing room; skip sharps when rows are tight.
+	var label_size := 9 if _row_h >= 20.0 else (8 if _row_h >= 15.0 else 7)
+	var label_sharps := _row_h >= 16.0
 	for r in _rows:
 		var midi := _row_midi(r)
 		var y := r * _row_h
@@ -245,9 +269,11 @@ func _draw() -> void:
 		if TuningManager.is_root(midi):
 			col = col.lerp(accent, 0.16)
 		draw_rect(Rect2(LABEL_W, y, size.x - LABEL_W, _row_h), col)
-		var label := "%s%d" % [NOTE_NAMES[pc], midi / 12 - 1]
-		var lcol := StudioTheme.TEXT if TuningManager.in_scale(midi) else Color(StudioTheme.DIM, 0.6)
-		draw_string(font, Vector2(4, y + _row_h * 0.5 + label_size * 0.35), label, HORIZONTAL_ALIGNMENT_LEFT, LABEL_W - 4, label_size, lcol)
+		if label_sharps or pc not in BLACK_PCS:
+			var label := "%s%d" % [NOTE_NAMES[pc], midi / 12 - 1]
+			var lcol := StudioTheme.TEXT if TuningManager.in_scale(midi) else Color(StudioTheme.DIM, 0.55)
+			var ty := y + (_row_h + label_size) * 0.5 - 1.0
+			draw_string(font, Vector2(3, ty), label, HORIZONTAL_ALIGNMENT_LEFT, LABEL_W - 5, label_size, lcol)
 	var cols := _columns()
 	var cell_w := _cell_w()
 	var beat_every := maxi(steps_per_bar / 4, 1)  # a quarter note
@@ -258,38 +284,38 @@ func _draw() -> void:
 		if cell_w < 6.0 and not on_beat:
 			continue  # too dense: only draw beats
 		var alpha := 0.28 if on_bar else (0.13 if on_beat else 0.045)
-		draw_line(Vector2(x, 0), Vector2(x, size.y - VEL_H - 6), Color(1, 1, 1, alpha), 1.0)
+		draw_line(Vector2(x, 0), Vector2(x, note_bottom), Color(1, 1, 1, alpha), 1.0)
 
-	var vr := _vel_rect()
-	draw_rect(vr, Color("10131a"))
-	draw_line(Vector2(vr.position.x, vr.position.y), Vector2(vr.end.x, vr.position.y), Color(1, 1, 1, 0.06), 1.0)
-	# the label spot is the pan button: tap it to draw where the sound sits
-	var pan_box := Rect2(4, vr.position.y + 4, LABEL_W - 8, VEL_H - 8)
-	draw_rect(pan_box, StudioTheme.PANEL_HI)
-	draw_rect(pan_box, Color(1, 1, 1, 0.08), false, 1.0)
-	Icons.draw(self, "pan", pan_box.get_center(), 11.0, StudioTheme.TEXT)
+	if lh > 0.0:
+		var lr := _lane_rect()
+		draw_rect(lr, Color("10131a"))
+		draw_line(Vector2(lr.position.x, lr.position.y), Vector2(lr.end.x, lr.position.y), Color(1, 1, 1, 0.06), 1.0)
+		if show_pan:
+			_draw_pan_lane(lr, font)
 	if track == null:
 		return
 	# keys being played right now: light up their row and name
 	for m in live:
-		var lr: int = int(m) - low_midi
-		if lr >= 0 and lr < _rows:
-			draw_rect(Rect2(0, lr * _row_h, size.x, _row_h), Color(accent, 0.30))
-			draw_rect(Rect2(0, lr * _row_h, LABEL_W, _row_h), Color(accent, 0.75))
+		var live_r: int = int(m) - low_midi
+		if live_r >= 0 and live_r < _rows:
+			draw_rect(Rect2(0, live_r * _row_h, size.x, _row_h), Color(accent, 0.30))
+			draw_rect(Rect2(0, live_r * _row_h, LABEL_W, _row_h), Color(accent, 0.75))
 	var now := _now_step()
-	var vel_bars := _vel_bars()
-	for i in vel_bars.size():  # velocity lane: notes sharing a step get side-by-side bars
-		var vb: Dictionary = vel_bars[i]
-		var vn: Dictionary = vb.note
-		var vh: float = vn.vel * (VEL_H - 4)
-		var hot: bool = is_same(_drag.get("note"), vn)
-		var vc := vel_color(vn.vel)
-		var bar := Rect2(vb.x, vr.end.y - 2 - vh, vb.w, vh)
-		draw_rect(bar, Color(0, 0, 0, 0.35))
-		draw_rect(Rect2(bar.position.x, bar.position.y, bar.size.x, maxf(bar.size.y - 1.0, 1.0)), vc.lightened(0.28) if hot else vc)
-		if hot and _drag.get("mode", "") == "vel":  # the exact value while dragging
-			var txt := "%d%%" % roundi(vn.vel * 100.0)
-			draw_string(font, Vector2(clampf(vb.x - 6.0, LABEL_W, size.x - 34.0), vr.position.y - 4.0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color.WHITE)
+	if show_velocity:
+		var vr2 := _lane_rect()
+		var vel_bars := _vel_bars()
+		for i in vel_bars.size():  # velocity lane: notes sharing a step get side-by-side bars
+			var vb: Dictionary = vel_bars[i]
+			var vn: Dictionary = vb.note
+			var bar_h: float = vn.vel * (VEL_H - 4)
+			var hot: bool = is_same(_drag.get("note"), vn)
+			var vc := vel_color(vn.vel)
+			var bar := Rect2(vb.x, vr2.end.y - 2 - bar_h, vb.w, bar_h)
+			draw_rect(bar, Color(0, 0, 0, 0.35))
+			draw_rect(Rect2(bar.position.x, bar.position.y, bar.size.x, maxf(bar.size.y - 1.0, 1.0)), vc.lightened(0.28) if hot else vc)
+			if hot and _drag.get("mode", "") == "vel":  # the exact value while dragging
+				var txt := "%d%%" % roundi(vn.vel * 100.0)
+				draw_string(font, Vector2(clampf(float(vb.x) - 6.0, LABEL_W, size.x - 34.0), vr2.position.y - 4.0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color.WHITE)
 	for n in track.notes:
 		var p0 := _note_pos(n) - base
 		var p1 := p0 + _note_dur(n)
@@ -409,14 +435,12 @@ func _begin(pos: Vector2) -> void:
 	if track == null:
 		return
 	_drag = {}
-	if pos.x < LABEL_W and pos.y >= size.y - VEL_H - 6:  # the pan button, where the "Vel" label was
-		pan_requested.emit()
-		return
-	if pos.x < LABEL_W and pos.y < size.y - VEL_H - 6:  # the note names are keys: click one to hear it
+	var note_bottom := size.y - _lane_h() - (2.0 if _lane_h() > 0.0 else 0.0)
+	if pos.x < LABEL_W and pos.y < note_bottom:  # the note names are keys: click one to hear it
 		_preview(_row_midi(_cell(pos).y))
 		_drag = {"mode": "key"}
 		return
-	if _vel_rect().has_point(pos):
+	if show_velocity and _lane_rect().has_point(pos):
 		# the bar nearest to the finger wins, so stacked notes can each be picked
 		var best := {}
 		var best_d := INF
@@ -430,9 +454,14 @@ func _begin(pos: Vector2) -> void:
 			_set_vel(pos)
 			_changed()
 		return
-	if pos.x < LABEL_W or pos.y > size.y - VEL_H - 6:
+	if show_pan and _lane_rect().has_point(pos):
+		_pan_last = Vector2(-1, 0)
+		_drag = {"mode": "pan"}
+		_put_pan(pos)
 		return
-	if select_mode:
+	if pos.x < LABEL_W or pos.y > note_bottom:
+		return
+	if select_kind != "":
 		var sc := _cell(pos)
 		var under := track.note_at(sc.x, _row_midi(sc.y))
 		if not under.is_empty() and _is_selected(under):  # grab the selection: drag moves all of it
@@ -440,7 +469,7 @@ func _begin(pos: Vector2) -> void:
 			for sn in selection:
 				orig.append({"note": sn, "start": int(sn.start), "midi": int(sn.midi)})
 			_drag = {"mode": "group", "press": pos, "orig": orig, "tap": true}
-		else:  # a box; a plain click (no drag) is the paste click when notes are copied
+		else:  # a box; in copy mode a plain click pastes when armed
 			_drag = {"mode": "box", "a": pos, "b": pos, "press": pos, "tap": true}
 		queue_redraw()
 		return
@@ -588,6 +617,9 @@ func _update(pos: Vector2) -> void:
 			_set_vel(pos)
 			queue_redraw()
 			return
+		"pan":
+			_put_pan(pos)
+			return
 		"draw", "resize":
 			var anchor: float = _drag.anchor
 			var dur := clampf(song + q - anchor, q, float(_total()) - anchor)
@@ -618,20 +650,29 @@ func _end() -> void:
 			selection_moved.emit()
 		queue_redraw()
 		return
+	if _drag.get("mode", "") == "pan":
+		track.pan_curve.sort_custom(func(a, b): return a[0] < b[0])
+		TrackManager.apply_mix()
+		_changed()
+		_drag = {}
+		_pan_last = Vector2(-1, 0)
+		queue_redraw()
+		return
 	if _drag.get("mode", "") == "box":
 		var was_click: bool = _drag.get("tap", false)
 		var at := _cell(_drag.a)
 		_drag = {}
 		if was_click:
-			if armed:
+			if select_kind == "copy" and armed:
 				paste_requested.emit(at.x, _row_midi(at.y))  # the click picks the paste cell
 			else:
 				selection = []
 		elif selection.is_empty():
-			pass  # an empty box: whatever was copied before stays ready to paste
-		else:
-			armed = true  # selecting is copying: the next click on the grid pastes
+			pass  # empty box: keep any earlier copy armed in copy mode
+		elif select_kind == "copy":
+			armed = true  # next click pastes
 			selection_made.emit()
+		# move mode: selection stays highlighted for dragging / arrow keys
 		queue_redraw()
 		return
 	if track != null and _drag.has("note"):
@@ -646,8 +687,68 @@ func _end() -> void:
 func _set_vel(pos: Vector2) -> void:
 	if not _drag.has("note"):
 		return
-	var vr := _vel_rect()
+	var vr := _lane_rect()
 	_drag.note.vel = clampf(1.0 - (pos.y - vr.position.y) / VEL_H, 0.05, 1.0)
+
+
+func _draw_pan_lane(lr: Rect2, font: Font) -> void:
+	draw_line(Vector2(lr.position.x, lr.position.y + lr.size.y * 0.5), Vector2(lr.end.x, lr.position.y + lr.size.y * 0.5), Color(1, 1, 1, 0.2), 1.0)
+	draw_string(font, Vector2(6, lr.position.y + 14), "R", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, StudioTheme.DIM)
+	draw_string(font, Vector2(6, lr.end.y - 4), "L", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, StudioTheme.DIM)
+	if track == null:
+		return
+	var base := base_step()
+	var cw := _cw()
+	var col := accent
+	var pts: Array = []
+	for p in track.pan_curve:
+		var s := int(p[0])
+		if s >= base and s < base + steps:
+			pts.append(p)
+	pts.sort_custom(func(a, b): return a[0] < b[0])
+	if pts.is_empty():
+		var y := lr.position.y + (0.5 - track.pan * 0.5) * lr.size.y
+		draw_line(Vector2(lr.position.x, y), Vector2(lr.end.x, y), col.darkened(0.25), 2.0)
+	else:
+		var line := PackedVector2Array()
+		for p in pts:
+			var x := LABEL_W + (float(p[0]) - base + 0.5) * cw
+			var y := lr.position.y + (0.5 - float(p[1]) * 0.5) * lr.size.y
+			line.append(Vector2(x, y))
+		if line.size() > 1:
+			draw_polyline(line, col, 2.5, true)
+		for pt in line:
+			draw_circle(pt, 2.2, col)
+
+
+func _put_pan(pos: Vector2) -> void:
+	if track == null:
+		return
+	var lr := _lane_rect()
+	var step := clampi(int(floor((pos.x - LABEL_W) / _cw())) + base_step(), 0, _total() - 1)
+	var pan := clampf((0.5 - (pos.y - lr.position.y) / maxf(lr.size.y, 1.0)) * 2.0, -1.0, 1.0)
+	if absf(pan) < 0.05:
+		pan = 0.0
+	var from := step
+	var p0 := pan
+	if _pan_last.x >= 0.0:
+		from = int(_pan_last.x)
+		p0 = _pan_last.y
+	var a := mini(from, step)
+	var b := maxi(from, step)
+	for k in range(a, b + 1):
+		var f := 1.0 if b == a else float(k - from) / float(step - from) if step != from else 1.0
+		_set_pan_point(k, lerpf(p0, pan, clampf(f, 0.0, 1.0)))
+	_pan_last = Vector2(step, pan)
+	queue_redraw()
+
+
+func _set_pan_point(step: int, pan: float) -> void:
+	for i in track.pan_curve.size():
+		if int(track.pan_curve[i][0]) == step:
+			track.pan_curve[i][1] = pan
+			return
+	track.pan_curve.append([step, pan])
 
 
 func _gui_input(e: InputEvent) -> void:
@@ -660,7 +761,7 @@ func _gui_input(e: InputEvent) -> void:
 	elif e is InputEventMouseMotion and (e.button_mask & MOUSE_BUTTON_MASK_LEFT) != 0:
 		_update(e.position)
 	elif e is InputEventMouseMotion and armed:  # the paste pointer follows the mouse
-		var inside: bool = e.position.x >= LABEL_W and e.position.y < size.y - VEL_H - 6
+		var inside: bool = e.position.x >= LABEL_W and e.position.y < size.y - _lane_h() - 2.0
 		var at := _cell(e.position) if inside else Vector2i(-1, -1)
 		if at != _hover:
 			_hover = at

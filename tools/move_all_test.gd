@@ -26,7 +26,7 @@ func _initialize() -> void:
 	roll.track = t
 	await process_frame
 	var cw: float = (roll.size.x - roll.LABEL_W) / 16.0
-	var rh: float = (roll.size.y - roll.VEL_H - 6.0) / 24.0
+	var rh: float = (roll.size.y - roll._lane_h() - 4.0) / 24.0
 	var p0 := Vector2(roll.LABEL_W + cw * 8.5, rh * 6.5)
 
 	var before: int = t.notes.size()

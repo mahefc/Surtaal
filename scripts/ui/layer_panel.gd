@@ -33,7 +33,7 @@ func _init() -> void:
 	head.add_theme_constant_override("separation", 10)
 	v.add_child(head)
 	_art = InstrumentArt.new()
-	_art.custom_minimum_size = Vector2(44, 44)
+	_art.custom_minimum_size = Vector2(34, 34)
 	_art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	head.add_child(_art)
 	var names := VBoxContainer.new()
@@ -85,7 +85,7 @@ func _init() -> void:
 	g.custom_minimum_size = Vector2(26, 26)
 	g.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	var glyph := IconGlyph.new("speaker")
-	glyph.glyph_scale = 0.4
+	glyph.glyph_scale = 0.28
 	glyph.glyph_color = StudioTheme.DIM
 	g.add_child(glyph)
 	vr.add_child(g)
