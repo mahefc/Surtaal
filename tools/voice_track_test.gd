@@ -65,7 +65,7 @@ func _initialize() -> void:
 	_check("the + chooser offers Instrument, Loop and Voice: %s" % str(got), got == ["instrument", "loop", "voice"])
 
 	# ---- thin rows, no arrows
-	var m: Track = tm.add_track("piano")
+	var m: Track = tm.add_track("grand_piano")
 	for k in 6:
 		m.add_note(k * 8, 4, 60 + k, 0.8)
 	tm.notify_changed(m)

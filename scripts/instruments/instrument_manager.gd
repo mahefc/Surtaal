@@ -67,11 +67,64 @@ func _load_presets() -> Dictionary:
 	return merged
 
 
+## Older projects may still name instruments we removed; map them to the closest VSCO2 / drum kit id.
+const ID_ALIASES := {
+	"piano": "grand_piano",
+	"salamander_grand": "grand_piano",
+	"violin": "solo_violin",
+	"strings": "violins",
+	"guitar": "harp_real",
+	"synth_lead": "flute",
+	"guzheng": "harp_real",
+	"erhu": "solo_violin",
+	"dizi": "flute",
+	"taiko": "bassdrum",
+	"organ": "grand_piano",
+	"pad": "violins",
+	"choir": "violins",
+	"brass": "trumpet",
+	"braam": "tuba",
+	"ostinato": "violins",
+	"hybrid_lead": "flute",
+	"pluck_synth": "harp_real",
+	"bass808": "bassdrum",
+	"epic_hit": "bassdrum",
+	"epic_strings": "violins",
+	"soaring_strings": "violins",
+	"dark_strings": "cellos",
+	"brass_braam": "tuba",
+	"heroic_horns": "horn",
+	"cinema_piano": "grand_piano",
+	"trailer_hit": "bassdrum",
+	"panda_flute": "flute",
+	"panda_strings": "violins",
+	"panda_zither": "harp_real",
+}
+
+
 func get_by_id(id: String) -> InstrumentDef:
 	for def in instruments:
 		if def.id == id:
 			return def
 	return null
+
+
+## Resolve a saved / requested id to a live catalogue entry (alias → fallback).
+func resolve_id(id: String) -> String:
+	var mapped := str(ID_ALIASES.get(id, id))
+	if get_by_id(mapped) != null:
+		return mapped
+	if get_by_id(id) != null:
+		return id
+	if get_by_id("grand_piano") != null:
+		return "grand_piano"
+	if get_by_id("kick") != null:
+		return "kick"
+	return instruments[0].id if not instruments.is_empty() else id
+
+
+func get_or_default(id: String) -> InstrumentDef:
+	return get_by_id(resolve_id(id))
 
 
 func categories() -> PackedStringArray:

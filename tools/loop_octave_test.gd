@@ -23,7 +23,7 @@ func _initialize() -> void:
 	pm.new_project()
 
 	# ---- octave: keys and grid together
-	var t: Track = tm.add_track("piano")
+	var t: Track = tm.add_track("grand_piano")
 	scene._open_editor(t)
 	var ed: Node = scene._editor
 	var keys0: int = ed._keys.first_midi

@@ -115,7 +115,10 @@ func add_track(instrument_id: String, kind: String = "melodic") -> Track:
 		t.drum_lanes = Track.default_drum_lanes()
 		t.drum_len = 4 * t.pattern_steps()  # a loop clip has a real length: it neither grows nor shrinks by itself
 		t.drum_start = start_step
-	var base := "Drum loop" if kind == "drums" else ("Voice" if kind == "audio" else InstrumentManager.get_by_id(instrument_id).display_name)
+	var mel_def := InstrumentManager.get_or_default(instrument_id) if kind == "melodic" else null
+	if kind == "melodic" and mel_def:
+		t.instrument_id = mel_def.id
+	var base := "Drum loop" if kind == "drums" else ("Voice" if kind == "audio" else (mel_def.display_name if mel_def else "Track"))
 	t.name = _unique_name(base)
 	if kind == "drums":
 		load_drum_starter(t, "Basic beat")
@@ -138,11 +141,12 @@ func remove_track(t: Track) -> void:
 func set_instrument(t: Track, instrument_id: String) -> void:
 	var old := InstrumentManager.get_by_id(t.instrument_id)
 	var was_default: bool = old != null and t.name.begins_with(old.display_name)
-	t.instrument_id = instrument_id
+	var neu := InstrumentManager.get_or_default(instrument_id)
+	t.instrument_id = neu.id if neu else instrument_id
 	t.preset = 0
 	apply_mix()  # the chorus that thickens a big-section instrument follows the instrument
-	if was_default:  # a default name follows the instrument; a name the user chose stays
-		t.name = _unique_name(InstrumentManager.get_by_id(instrument_id).display_name)
+	if was_default and neu:  # a default name follows the instrument; a name the user chose stays
+		t.name = _unique_name(neu.display_name)
 	tracks_changed.emit()
 
 
@@ -436,6 +440,37 @@ func load_drum_starter(t: Track, starter: String) -> void:
 	track_changed.emit(t)
 
 
+## Fill the rack with a fresh random beat (biased by each layer's role). One tap, no menu.
+func randomize_drums(t: Track) -> void:
+	if t == null or t.kind != "drums":
+		return
+	t.drum_steps = {}
+	t.drum_vel = {}
+	var res := t.drum_res
+	var total := t.grid_steps()
+	for lane in t.drum_lanes:
+		var role := Track.lane_role(lane)
+		var hits: Array = []
+		for s in total:
+			var p := 0.12
+			match role:
+				"kick":
+					p = 0.72 if s % (4 * res) == 0 else (0.28 if s % (2 * res) == 0 else 0.08)
+				"snare":
+					p = 0.7 if s % (8 * res) == 4 * res else (0.18 if s % (4 * res) == 0 else 0.05)
+				"hat":
+					p = 0.62 if s % (2 * res) == 0 else 0.22
+				_:
+					p = 0.2 if s % (4 * res) == 0 else 0.1
+			if randf() < p:
+				hits.append(s)
+		# keep at least a little something on known roles so the loop is not empty
+		if hits.is_empty() and role in ["kick", "snare", "hat"]:
+			hits.append(0 if role != "snare" else mini(4 * res, total - 1))
+		t.drum_steps[lane.key] = hits
+	track_changed.emit(t)
+
+
 ## Change how finely a bar is divided: 1, 2 or 4 cells per 16th note (16 / 32 / 64 cells in a bar).
 ## The pattern is still the same length, and every hit stays where it is in the music (a hit
 ## that falls between the cells of a coarser grid moves to the nearest cell).
@@ -507,12 +542,12 @@ func apply_beatbox(t: Track, steps: Dictionary, vels: Dictionary = {}) -> int:
 ## new instrument's name unless that name is already used by another layer.
 func change_drum_lane(t: Track, key: String, instrument_id: String) -> void:
 	var i := t.lane_index(key)
-	var def := InstrumentManager.get_by_id(instrument_id)
+	var def := InstrumentManager.get_or_default(instrument_id)
 	if i == -1 or def == null or t.kind != "drums":
 		return
 	var lane: Dictionary = t.drum_lanes[i]
 	lane["role"] = Track.lane_role(lane)
-	lane.id = instrument_id
+	lane.id = def.id
 	lane.midi = def.start_midi
 	var new_key := def.display_name
 	var n := 2
@@ -532,7 +567,7 @@ func change_drum_lane(t: Track, key: String, instrument_id: String) -> void:
 
 ## Add any instrument as a new drum layer.
 func add_drum_lane(t: Track, instrument_id: String) -> void:
-	var def := InstrumentManager.get_by_id(instrument_id)
+	var def := InstrumentManager.get_or_default(instrument_id)
 	if def == null or t.kind != "drums":
 		return
 	var key := def.display_name
@@ -540,7 +575,7 @@ func add_drum_lane(t: Track, instrument_id: String) -> void:
 	while t.lane_index(key) != -1:
 		key = "%s %d" % [def.display_name, i]
 		i += 1
-	t.drum_lanes.append({"key": key, "id": instrument_id, "midi": def.start_midi, "vol": 0.85, "mute": false})
+	t.drum_lanes.append({"key": key, "id": def.id, "midi": def.start_midi, "vol": 0.85, "mute": false})
 	SampleManager.prebake(def, [def.start_midi], 0, true)
 	track_changed.emit(t)
 

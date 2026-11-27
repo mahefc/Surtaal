@@ -26,7 +26,7 @@ func _initialize() -> void:
 	pm.new_project()
 	eng.note_played.connect(func(_d, _m, _s): played += 1)
 
-	var m: Track = tm.add_track("piano")
+	var m: Track = tm.add_track("grand_piano")
 	m.add_note(0, 4, 60, 0.8)
 	m.add_note(48, 4, 64, 0.8)
 	var d: Track = tm.add_track("", "drums")

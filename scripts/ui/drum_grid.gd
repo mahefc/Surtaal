@@ -2,15 +2,17 @@ class_name DrumGrid
 extends Control
 ## Drum rack editor for a drums-kind Track: every row is a LAYER (any instrument) and
 ## all layers are composed together in one grid that loops through the song.
-## Tap / drag on cells to paint hits (each new hit is heard). Tap a layer's card for its panel:
-## change sound, pitch, volume, mute, remove.
+## Tap / drag on cells to paint hits (silent while designing — use Play to hear the loop).
+## Tap a layer's card for its panel: change sound, pitch, volume, mute, remove.
 ## Velocity mode: drag up/down on a hit to set how hard it is played (drag along a row to draw it).
+## Pan mode: a lane under the rows to draw L/R over the pattern (same idea as the note editor).
 ## The grid has 16, 32 or 64 cells in a bar (`Track.drum_res`): a finer grid, never more bars.
 
 const LABEL_W := 128.0
 const COMPACT_W := 62.0   # the layer cards shrink to just the picture when the grid is very fine
 const MIN_ROW_H := 28.0
 const MAX_ROW_H := 64.0
+const PAN_H := 56.0  # taller for freehand pan drawing
 const NOTE_NAMES := ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
 ## "Change sound" was chosen in a layer's panel: the editor opens the instrument picker.
@@ -25,13 +27,25 @@ var track: Track:
 var velocity_mode := false:
 	set(v):
 		velocity_mode = v
+		if v:
+			show_pan = false
 		_paint = -1
 		queue_redraw()
 
-var _paint := -1  # -1 idle, 0 erasing, 1 adding, 2 drawing velocities
+## Pan lane under the rows (toolbar toggle, like the note editor).
+var show_pan := false:
+	set(v):
+		show_pan = v
+		if v:
+			velocity_mode = false
+		_paint = -1
+		queue_redraw()
+
+var _paint := -1  # -1 idle, 0 erasing, 1 adding, 2 drawing velocities, 3 drawing pan
 var _vel_row := -1
 var _vel_dirty := false
 var _last := Vector2i(-1, -1)
+var _pan_last_px := Vector2(-1, -1)  # last freehand pan sample in lane pixels
 var _panel: LayerPanel
 var _sb := StyleBoxFlat.new()
 
@@ -75,15 +89,26 @@ func _lw() -> float:
 	return COMPACT_W if _steps() > 32 else LABEL_W
 
 
+func _pan_h() -> float:
+	return PAN_H if show_pan else 0.0
+
+
 func _row_h() -> float:
-	return clampf(size.y / maxf(_lanes().size(), 1.0), MIN_ROW_H, MAX_ROW_H)
+	var avail := maxf(size.y - _pan_h(), 1.0)
+	return clampf(avail / maxf(_lanes().size(), 1.0), MIN_ROW_H, MAX_ROW_H)
 
 
 func _cw() -> float:
 	return (size.x - _lw()) / _steps()
 
 
+func _lane_rect() -> Rect2:
+	return Rect2(_lw(), size.y - _pan_h(), size.x - _lw(), _pan_h())
+
+
 func _cell(pos: Vector2) -> Vector2i:
+	if show_pan and pos.y >= size.y - _pan_h():
+		return Vector2i(-1, -1)
 	var x := int(floorf((pos.x - _lw()) / _cw()))
 	var y := int(floorf(pos.y / _row_h()))
 	if x < 0 or x >= _steps() or y < 0 or y >= _lanes().size():
@@ -157,6 +182,8 @@ func _draw() -> void:
 	for b in range(1, track.drum_bars):
 		var x := lw + b * 16 * res * cw
 		draw_line(Vector2(x, 0), Vector2(x, lanes.size() * rh), Color(1, 1, 1, 0.25), 1.5)
+	if show_pan:
+		_draw_pan_lane(font)
 
 
 func _apply(c: Vector2i) -> void:
@@ -168,9 +195,7 @@ func _apply(c: Vector2i) -> void:
 	if track.drum_on(lane.key, c.x) == on:
 		return
 	track.set_drum(lane.key, c.x, on)
-	if on:  # hear the hit first, then let the project know (that can take a moment)
-		TrackManager.audition_drum(track, lane, track.hit_vel(lane.key, c.x))
-	TrackManager.notify_changed(track)
+	TrackManager.notify_changed(track)  # silent while designing — Play hears the loop
 
 
 ## Velocity mode: the finger's height in the pressed layer's row is the loudness of the hit under it.
@@ -189,11 +214,95 @@ func _draw_velocity(pos: Vector2) -> void:
 		return
 	track.set_hit_vel(lane.key, c.x, vel)
 	_vel_dirty = true
-	if c != _last:  # hear the hit once per cell (the loop itself is heard if it is playing)
+	if c != _last:
 		_last = c
-		if not Transport.playing:
-			TrackManager.audition_drum(track, lane, vel)
 	queue_redraw()
+
+
+func _pan_reset_rect() -> Rect2:
+	var ph := _pan_h()
+	var mid_y := size.y - ph * 0.5
+	return Rect2(4, mid_y - 10, _lw() - 10, 20)
+
+
+func _reset_pan() -> void:
+	if track == null:
+		return
+	track.pan_curve.clear()
+	TrackManager.apply_mix()
+	TrackManager.notify_changed(track)
+	queue_redraw()
+
+
+func _draw_pan_lane(font: Font) -> void:
+	var ph := _pan_h()
+	var strip := Rect2(0, size.y - ph, size.x, ph)
+	var lr := _lane_rect()
+	draw_rect(strip, Color("10131a"))
+	draw_line(Vector2(0, strip.position.y), Vector2(size.x, strip.position.y), Color(1, 1, 1, 0.06), 1.0)
+	draw_line(Vector2(lr.position.x, lr.position.y + lr.size.y * 0.5), Vector2(lr.end.x, lr.position.y + lr.size.y * 0.5), Color(1, 1, 1, 0.18), 1.0)
+	draw_string(font, Vector2(6, lr.position.y + 12), "R", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, StudioTheme.DIM)
+	draw_string(font, Vector2(6, lr.end.y - 4), "L", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, StudioTheme.DIM)
+	var reset := _pan_reset_rect()
+	draw_rect(reset, StudioTheme.PANEL_HI)
+	Icons.draw(self, "trash", reset.get_center(), 7.0, StudioTheme.DIM)
+	var steps := float(track.pattern_steps())
+	var col := TrackManager.color_of(track)
+	var pts: Array = track.pan_curve.duplicate()
+	pts.sort_custom(func(a, b): return float(a[0]) < float(b[0]))
+	if pts.is_empty():
+		var y := lr.position.y + (0.5 - track.pan * 0.5) * lr.size.y
+		draw_line(Vector2(lr.position.x, y), Vector2(lr.end.x, y), Color(col, 0.55), 2.0)
+	else:
+		var line := PackedVector2Array()
+		for p in pts:
+			var s := float(p[0])
+			if s < -0.01 or s > steps + 0.01:
+				continue
+			var x := lr.position.x + (s / steps) * lr.size.x
+			var y := lr.position.y + (0.5 - float(p[1]) * 0.5) * lr.size.y
+			line.append(Vector2(x, y))
+		if line.size() == 1:
+			draw_circle(line[0], 2.0, col)
+		elif line.size() > 1:
+			draw_polyline(line, col, 2.8, true)
+	if Transport.playing and Transport.step >= 0:
+		var px := lr.position.x + (float(TrackManager.pan_step(track, Transport.step)) + 0.5) / steps * lr.size.x
+		draw_line(Vector2(px, lr.position.y), Vector2(px, lr.end.y), Color(1, 1, 1, 0.7), 1.5)
+
+
+## Freehand pan: sample densely along the finger path (not one point per grid cell).
+func _put_pan(pos: Vector2) -> void:
+	if track == null:
+		return
+	var lr := _lane_rect()
+	var clamped := Vector2(clampf(pos.x, lr.position.x, lr.end.x), clampf(pos.y, lr.position.y, lr.end.y))
+	if _pan_last_px.x < 0.0:
+		_sample_pan_px(clamped, lr)
+	else:
+		var dist := clamped.distance_to(_pan_last_px)
+		var n := maxi(1, int(ceil(dist / 2.0)))  # ~every 2px along the stroke
+		for i in n + 1:
+			_sample_pan_px(_pan_last_px.lerp(clamped, float(i) / float(n)), lr)
+	_pan_last_px = clamped
+	queue_redraw()
+
+
+func _sample_pan_px(pos: Vector2, lr: Rect2) -> void:
+	var steps := float(track.pattern_steps())
+	var t := clampf((pos.x - lr.position.x) / maxf(lr.size.x, 1.0), 0.0, 1.0)
+	var step_f := snappedf(t * steps, 0.05)
+	var pan := clampf((0.5 - (pos.y - lr.position.y) / maxf(lr.size.y, 1.0)) * 2.0, -1.0, 1.0)
+	_set_pan_point(step_f, pan)
+
+
+func _set_pan_point(step: float, pan: float) -> void:
+	for i in track.pan_curve.size():
+		if absf(float(track.pan_curve[i][0]) - step) < 0.03:
+			track.pan_curve[i][0] = step
+			track.pan_curve[i][1] = pan
+			return
+	track.pan_curve.append([step, pan])
 
 
 func _gui_input(e: InputEvent) -> void:
@@ -201,7 +310,20 @@ func _gui_input(e: InputEvent) -> void:
 		return
 	if e is InputEventMouseButton and e.button_index == MOUSE_BUTTON_LEFT:
 		if e.pressed:
-			if e.position.x < _lw():  # a layer's card -> its panel
+			if show_pan and e.position.y >= size.y - _pan_h():
+				if _pan_reset_rect().has_point(e.position):
+					_reset_pan()
+					accept_event()
+					return
+				if _lane_rect().has_point(e.position):
+					_paint = 3
+					_pan_last_px = Vector2(-1, -1)
+					_put_pan(e.position)
+					accept_event()
+					return
+				accept_event()
+				return
+			if e.position.x < _lw() and e.position.y < size.y - _pan_h():  # a layer's card -> its panel
 				var li := int(floorf(e.position.y / _row_h()))
 				if li >= 0 and li < _lanes().size():
 					var card := Rect2(get_global_rect().position + Vector2(0, li * _row_h()), Vector2(_lw(), _row_h()))
@@ -222,11 +344,18 @@ func _gui_input(e: InputEvent) -> void:
 		else:
 			if _paint == 2 and _vel_dirty:
 				TrackManager.notify_changed(track)
+			elif _paint == 3:
+				track.pan_curve.sort_custom(func(a, b): return float(a[0]) < float(b[0]))
+				TrackManager.apply_mix()
+				TrackManager.notify_changed(track)
+				_pan_last_px = Vector2(-1, -1)
 			_paint = -1
 			_vel_dirty = false
 		accept_event()
 	elif e is InputEventMouseMotion and _paint >= 0:
 		if _paint == 2:
 			_draw_velocity(e.position)
+		elif _paint == 3:
+			_put_pan(e.position)
 		else:
 			_apply(_cell(e.position))

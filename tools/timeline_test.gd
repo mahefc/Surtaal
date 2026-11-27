@@ -57,7 +57,7 @@ func _initialize() -> void:
 	_check("the old second toolbar row is gone", arr._bar.get_parent() == arr and arr.get_child_count() > 0)
 
 	# ---- start marker: tap the ruler
-	var m: Track = tm.add_track("piano")
+	var m: Track = tm.add_track("grand_piano")
 	m.add_note(0, 4, 60, 0.8)
 	m.add_note(16, 4, 64, 0.8)
 	m.add_note(32, 4, 67, 0.8)

@@ -14,7 +14,7 @@ func _check(label: String, cond: bool) -> void:
 func _initialize() -> void:
 	await process_frame
 	var tm: Node = root.get_node("TrackManager")
-	var t = tm.add_track("piano")
+	var t = tm.add_track("grand_piano")
 	var a = t.add_note(4, 2, 60, 0.8)
 	var b = t.add_note(10, 3, 64, 0.8)
 	var roll = load("res://scripts/ui/piano_roll.gd").new()

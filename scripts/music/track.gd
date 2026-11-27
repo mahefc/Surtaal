@@ -109,8 +109,9 @@ func end_step() -> int:
 
 static func default_drum_lanes() -> Array[Dictionary]:
 	var out: Array[Dictionary] = []
-	for l in [["Kick", "kick", 36], ["Snare", "snare", 55], ["Hi-hat", "hat", 60]]:
-		out.append({"key": l[0], "id": l[1], "midi": l[2], "vol": 0.85, "mute": false, "role": l[1]})
+	# Virtuosity drum kit (CC0): roles stay kick/snare/hat so patterns and randomize still work.
+	for l in [["Kick", "kick", 36, "kick"], ["Snare", "snare", 38, "snare"], ["Hi-hat", "hat", 42, "hat"]]:
+		out.append({"key": l[0], "id": l[1], "midi": l[2], "vol": 0.85, "mute": false, "role": l[3]})
 	return out
 
 
@@ -177,15 +178,17 @@ func set_drum(lane: String, step: int, on: bool) -> void:
 
 
 ## Pan at a song step: the drawn curve if there is one, else the fixed pan.
-func pan_at(step: int) -> float:
+## Curve points may use fractional steps (freehand drawing).
+func pan_at(step: float) -> float:
 	if pan_curve.is_empty():
 		return pan
 	var prev = null
 	for p in pan_curve:
-		if int(p[0]) >= step:
-			if prev == null or int(p[0]) == step:
+		var t := float(p[0])
+		if t >= step:
+			if prev == null or is_equal_approx(t, step):
 				return float(p[1])
-			var f := float(step - int(prev[0])) / float(int(p[0]) - int(prev[0]))
+			var f := (step - float(prev[0])) / (t - float(prev[0]))
 			return lerpf(float(prev[1]), float(p[1]), f)
 		prev = p
 	return float(prev[1])
@@ -241,15 +244,19 @@ static func from_dict(d: Dictionary) -> Track:
 	t.id = int(d.get("id", 0))
 	t.name = str(d.get("name", "Track"))
 	t.kind = str(d.get("kind", "melodic"))
-	t.instrument_id = str(d.get("instrument", ""))
+	t.instrument_id = InstrumentManager.resolve_id(str(d.get("instrument", ""))) if str(d.get("instrument", "")) != "" else ""
 	t.preset = int(d.get("preset", 0))
+	if t.kind == "melodic" and t.instrument_id == "":
+		t.instrument_id = InstrumentManager.resolve_id("grand_piano")
+	elif t.kind == "drums" and t.instrument_id == "":
+		t.instrument_id = "kick"
 	t.muted = bool(d.get("muted", false))
 	t.solo = bool(d.get("solo", false))
 	t.volume = float(d.get("volume", 0.85))
 	t.pan = clampf(float(d.get("pan", 0.0)), -1.0, 1.0)
 	t.reverb = clampf(float(d.get("reverb", 0.0)), 0.0, 1.0)
 	for p in d.get("pan_curve", []):
-		t.pan_curve.append([int(p[0]), clampf(float(p[1]), -1.0, 1.0)])
+		t.pan_curve.append([float(p[0]), clampf(float(p[1]), -1.0, 1.0)])
 	t.drum_start = maxi(int(d.get("drum_start", 0)), 0)
 	t.drum_len = maxi(int(d.get("drum_len", 0)), 0)
 	var au: Dictionary = d.get("audio", {})
@@ -264,7 +271,10 @@ static func from_dict(d: Dictionary) -> Track:
 	if not (t.drum_res in [1, 2, 4]):
 		t.drum_res = 1
 	for l in d.get("lanes", []):
-		t.drum_lanes.append({"key": str(l.get("key", "Layer")), "id": str(l.get("id", "kick")), "midi": int(l.get("midi", 36)),
+		var lid := InstrumentManager.resolve_id(str(l.get("id", "kick")))
+		var ldef := InstrumentManager.get_by_id(lid)
+		t.drum_lanes.append({"key": str(l.get("key", "Layer")), "id": lid,
+			"midi": int(l.get("midi", ldef.start_midi if ldef else 36)),
 			"vol": float(l.get("vol", 0.85)), "mute": bool(l.get("mute", false)), "role": str(l.get("role", ""))})
 	if t.kind == "drums" and t.drum_lanes.is_empty():  # projects saved before drum racks existed
 		t.drum_lanes = default_drum_lanes()

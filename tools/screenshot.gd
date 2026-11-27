@@ -109,7 +109,7 @@ func _initialize() -> void:
 		rm.save_wav(clean, 48000, "user://assets/_shot_voice.wav")
 		v1.audio_path = "user://assets/_shot_voice.wav"
 		v1.audio_dur = 4.0
-		tm.add_track("piano").add_note(0, 8, 60, 0.8)
+		tm.add_track("grand_piano").add_note(0, 8, 60, 0.8)
 		tm.notify_changed(v1)
 		await process_frame
 		scene._open_editor(v1)

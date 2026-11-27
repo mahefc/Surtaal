@@ -15,6 +15,7 @@ var max_parallel := maxi(1, OS.get_processor_count() - 2)
 
 var _cache := {}
 var _pending := {}   # key -> true while queued or baking
+var _failed := {}    # key -> true when bake returned null (do not block Play forever)
 var _queue: Array[Dictionary] = []
 var _running := 0
 var _mutex := Mutex.new()
@@ -46,7 +47,8 @@ func has_sample(def: InstrumentDef, midi: int, preset: int = -1) -> bool:
 	_mutex.lock()
 	var r := true
 	for l in def.velocity_layers():  # every velocity layer of this note must be ready
-		if not _cache.has(_key(def, midi, preset, l)):
+		var k := _key(def, midi, preset, l)
+		if not _cache.has(k) and not _failed.has(k):
 			r = false
 			break
 	_mutex.unlock()
@@ -92,7 +94,7 @@ func prebake(def: InstrumentDef, notes: Array, preset: int = -1, urgent: bool = 
 	for m in notes:
 		for layer in def.velocity_layers():  # every velocity layer, so any touch plays at once
 			var k := _key(def, m, preset, layer)
-			if _cache.has(k):
+			if _cache.has(k) or _failed.has(k):
 				continue
 			if _pending.has(k):
 				if urgent:  # already queued: move to the front
@@ -140,10 +142,13 @@ func _bake(def: InstrumentDef, midi: int, preset: int, k: String, layer: int = 0
 	_mutex.lock()
 	_pending.erase(k)
 	if s != null:
+		_failed.erase(k)
 		_cache[k] = s
 		last_bake_ms = ms
 		bake_count += 1
 		while _cache.size() > MAX_CACHED:  # evict oldest (insertion order)
 			_cache.erase(_cache.keys()[0])
+	else:
+		_failed[k] = true
 	_mutex.unlock()
 	return s

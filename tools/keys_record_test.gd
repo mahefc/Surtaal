@@ -12,7 +12,7 @@ func _initialize() -> void:
 	for i in 5:
 		await process_frame
 	tr.bpm = 100.0
-	var t: Track = tm.add_track("piano")
+	var t: Track = tm.add_track("grand_piano")
 	scene._open_editor(t)
 	var ed: Node = scene._editor
 	ed._set_source(true)

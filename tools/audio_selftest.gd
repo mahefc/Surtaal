@@ -157,7 +157,7 @@ func _test_sequencer(im: Node) -> int:
 	var eng: Node = root.get_node("AudioEngine")
 	var sm: Node = root.get_node("SampleManager")
 	root.get_node("ProjectManager").new_project()
-	var mel: Track = tm.add_track("piano")
+	var mel: Track = tm.add_track("grand_piano")
 	mel.add_note(0, 4, 60, 0.8)
 	mel.add_note(20, 4, 64, 0.8)  # ends at step 24 -> the song loops every 32 steps
 	tm.notify_changed(mel)

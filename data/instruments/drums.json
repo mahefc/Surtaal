@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "license_note": "Virtuosity Drums by Versilian Studios / Karoryfer Samples, CC0 1.0. https://github.com/sfzinstruments/virtuosity_drums",
+  "instruments": [
+    {
+      "id": "kick",
+      "name": "Kick",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#FF6B6B",
+      "start_midi": 36,
+      "range": [
+        30,
+        42
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 36,
+            "vel": 0,
+            "file": "res://assets/samples/kick/kick_v1.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 1,
+            "file": "res://assets/samples/kick/kick_v2.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 2,
+            "file": "res://assets/samples/kick/kick_v3.wav"
+          },
+          {
+            "midi": 36,
+            "vel": 3,
+            "file": "res://assets/samples/kick/kick_v4.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    },
+    {
+      "id": "snare",
+      "name": "Snare",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#FFD93D",
+      "start_midi": 38,
+      "range": [
+        32,
+        44
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 38,
+            "vel": 0,
+            "file": "res://assets/samples/snare/snare_v1.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 1,
+            "file": "res://assets/samples/snare/snare_v2.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 2,
+            "file": "res://assets/samples/snare/snare_v3.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 3,
+            "file": "res://assets/samples/snare/snare_v4.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 4,
+            "file": "res://assets/samples/snare/snare_v5.wav"
+          },
+          {
+            "midi": 38,
+            "vel": 5,
+            "file": "res://assets/samples/snare/snare_v6.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    },
+    {
+      "id": "hat",
+      "name": "Hi-hat",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#6BCB77",
+      "start_midi": 42,
+      "range": [
+        36,
+        48
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 42,
+            "vel": 0,
+            "file": "res://assets/samples/hat/hhc_v1.wav"
+          },
+          {
+            "midi": 42,
+            "vel": 1,
+            "file": "res://assets/samples/hat/hhc_v2.wav"
+          },
+          {
+            "midi": 42,
+            "vel": 2,
+            "file": "res://assets/samples/hat/hhc_v3.wav"
+          },
+          {
+            "midi": 42,
+            "vel": 3,
+            "file": "res://assets/samples/hat/hhc_v4.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    },
+    {
+      "id": "hat_open",
+      "name": "Open Hi-hat",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#95D5A0",
+      "start_midi": 46,
+      "range": [
+        40,
+        52
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 46,
+            "vel": 0,
+            "file": "res://assets/samples/hat_open/hho_v1.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 1,
+            "file": "res://assets/samples/hat_open/hho_v2.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 2,
+            "file": "res://assets/samples/hat_open/hho_v3.wav"
+          },
+          {
+            "midi": 46,
+            "vel": 3,
+            "file": "res://assets/samples/hat_open/hho_v4.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    },
+    {
+      "id": "tom_hi",
+      "name": "High Tom",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#4ECDC4",
+      "start_midi": 50,
+      "range": [
+        44,
+        56
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 50,
+            "vel": 0,
+            "file": "res://assets/samples/tom_hi/tomhi_v1.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 1,
+            "file": "res://assets/samples/tom_hi/tomhi_v2.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 2,
+            "file": "res://assets/samples/tom_hi/tomhi_v3.wav"
+          },
+          {
+            "midi": 50,
+            "vel": 3,
+            "file": "res://assets/samples/tom_hi/tomhi_v4.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    },
+    {
+      "id": "tom_lo",
+      "name": "Floor Tom",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#3AAFA9",
+      "start_midi": 45,
+      "range": [
+        39,
+        51
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 45,
+            "vel": 0,
+            "file": "res://assets/samples/tom_lo/tomlo_v1.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 1,
+            "file": "res://assets/samples/tom_lo/tomlo_v2.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 2,
+            "file": "res://assets/samples/tom_lo/tomlo_v3.wav"
+          },
+          {
+            "midi": 45,
+            "vel": 3,
+            "file": "res://assets/samples/tom_lo/tomlo_v4.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    },
+    {
+      "id": "rim",
+      "name": "Rimshot",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#F4A261",
+      "start_midi": 37,
+      "range": [
+        31,
+        43
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 37,
+            "vel": 0,
+            "file": "res://assets/samples/rim/sidestick_v1.wav"
+          },
+          {
+            "midi": 37,
+            "vel": 1,
+            "file": "res://assets/samples/rim/sidestick_v2.wav"
+          },
+          {
+            "midi": 37,
+            "vel": 2,
+            "file": "res://assets/samples/rim/sidestick_v3.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    },
+    {
+      "id": "ride",
+      "name": "Ride",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#A8DADC",
+      "start_midi": 51,
+      "range": [
+        45,
+        57
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 51,
+            "vel": 0,
+            "file": "res://assets/samples/ride/ride_v1.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 1,
+            "file": "res://assets/samples/ride/ride_v2.wav"
+          },
+          {
+            "midi": 51,
+            "vel": 2,
+            "file": "res://assets/samples/ride/ride_v3.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    },
+    {
+      "id": "crash",
+      "name": "Crash",
+      "category": "Drums",
+      "family": "Drum kit",
+      "synth": "sampler",
+      "color": "#BFC9D4",
+      "start_midi": 49,
+      "range": [
+        43,
+        55
+      ],
+      "description": "Virtuosity Drums studio recording (Versilian / Karoryfer, CC0). Velocity layers for expressive drum loops.",
+      "params": {
+        "samples": [
+          {
+            "midi": 49,
+            "vel": 0,
+            "file": "res://assets/samples/crash/crash_v1.wav"
+          },
+          {
+            "midi": 49,
+            "vel": 1,
+            "file": "res://assets/samples/crash/crash_v2.wav"
+          },
+          {
+            "midi": 49,
+            "vel": 2,
+            "file": "res://assets/samples/crash/crash_v3.wav"
+          }
+        ],
+        "loop": false,
+        "fixed": true,
+        "release": 0.15
+      }
+    }
+  ]
+}

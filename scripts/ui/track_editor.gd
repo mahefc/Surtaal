@@ -52,7 +52,7 @@ var _rec_btn: IconButton
 var _beat_btn: IconButton   # drum loops: beatbox into the mic
 var _beatbox := false       # the take being recorded is a beatbox for the drum loop
 var _vel_btn: IconButton    # toggle velocity editing (notes lane / drum hits)
-var _pan_btn: IconButton    # toggle pan draw lane (notes) / pan canvas (drums)
+var _pan_btn: IconButton    # toggle pan draw lane (notes / drums)
 var _move_btn: IconButton   # select notes and move them
 var _copy_btn: IconButton   # select notes and copy / paste them
 var _auto_loop := false     # the loop preview was started by drawing (velocity / pan), not by the play button
@@ -61,7 +61,6 @@ var _hear_all_btn: IconButton
 var _undo_btn: IconButton
 var _redo_btn: IconButton
 var _keys: PianoKeys
-var _pan_designer: PanDesigner
 var _delete_dialog: ConfirmationDialog
 var _choice: PopupPanel
 var _title_lbl: Label           # drum tracks only
@@ -118,11 +117,6 @@ func _init() -> void:
 	_side.add_theme_constant_override("separation", 8)
 	_side.custom_minimum_size = Vector2(SIDE_W, 0)
 
-	_pan_designer = PanDesigner.new()
-	add_child(_pan_designer)
-	_pan_designer.popup_hide.connect(func():
-		_pan_btn.set_pressed_no_signal(false)
-		_loop_off_after_drawing())
 	_delete_dialog = ConfirmationDialog.new()
 	_delete_dialog.dialog_text = "Delete this track and its notes?"
 	_delete_dialog.confirmed.connect(_delete_track)
@@ -272,23 +266,18 @@ func _build_tools() -> void:
 	_tools.add_child(add_layer)
 	_drum_only.append(add_layer)
 
-	# ready-made patterns: an icon that opens a small list (no dropdown showing a name)
-	var starter_menu := PopupMenu.new()
-	for n in TrackManager.DRUM_STARTERS:
-		starter_menu.add_item(n)
-	starter_menu.index_pressed.connect(func(i: int):
-		TrackManager.load_drum_starter(track, starter_menu.get_item_text(i)))
-	add_child(starter_menu)
-	var starter := _icon("patterns", "Ready-made beats", Vector2(36, 28))
+	# one tap: a fresh random beat (no menu)
+	var starter := _icon("patterns", "Random beat: fill the grid with a new pattern", Vector2(36, 28))
 	starter.pressed.connect(func():
-		var gp := starter.get_global_rect().position + Vector2(0, starter.size.y + 2)
-		starter_menu.popup_on_parent(Rect2i(Vector2i(gp), Vector2i(1, 1))))
+		if track:
+			TrackManager.randomize_drums(track))
 	_tools.add_child(starter)
 	_drum_only.append(starter)
 
-	_len_btn = _icon("steps", "Steps in the bar: tap to switch between 16, 32 and 64 (finer hits; it stays one bar)", Vector2(60, 28))
-	_len_btn.glyph.icon_left = true
+	_len_btn = _icon("steps", "Steps in the bar: tap to switch between 16, 32 and 64 (finer hits; it stays one bar)", Vector2(34, 28))
+	_len_btn.icon_name = ""  # number only
 	_len_btn.add_theme_font_size_override("font_size", 13)
+	_len_btn.text = "16"
 	_len_btn.pressed.connect(func():
 		if track:
 			TrackManager.set_drum_res(track, {1: 2, 2: 4, 4: 1}[track.drum_res])
@@ -311,7 +300,7 @@ func _build_tools() -> void:
 	_vel_btn.toggled.connect(_on_velocity_toggled)
 	_tools.add_child(_vel_btn)
 
-	# pan: melodic = draw lane under the notes (like velocity); drums = popup canvas
+	# pan: draw lane under the notes / drum grid (like velocity)
 	_pan_btn = _icon("pan", "Pan: tap to draw where the sound sits between the left and right speaker", Vector2(24, 24))
 	_pan_btn.toggle_mode = true
 	_pan_btn.toggled.connect(_on_pan_toggled)
@@ -406,8 +395,10 @@ func _choice_card(icon: String, title: String, sub: String, keys: bool) -> Butto
 # --------------------------------------------------------- open / close
 func open(t: Track) -> void:
 	track = t
-	def = InstrumentManager.get_by_id(t.instrument_id)
 	var drums := t.kind == "drums"
+	if not drums:
+		t.instrument_id = InstrumentManager.resolve_id(t.instrument_id)
+	def = InstrumentManager.get_or_default(t.instrument_id if t.instrument_id != "" else "kick")
 	_roll.track = t
 	_grid.track = t
 	_refresh_len_label()
@@ -417,7 +408,7 @@ func open(t: Track) -> void:
 	_peak.color = color
 	_swap_btn.glyph.glyph_color = color
 	_roll.def = def
-	if not drums:
+	if not drums and def != null:
 		def.active_preset = t.preset
 		_keys.first_midi = def.start_midi - (def.start_midi % 12)
 		_view_zoom = 1 if get_viewport_rect().size.x > get_viewport_rect().size.y else 0
@@ -435,6 +426,7 @@ func open(t: Track) -> void:
 	_roll.show_pan = false
 	_roll.select_kind = ""
 	_grid.velocity_mode = false
+	_grid.show_pan = false
 	_set_rec_state(Rec.IDLE)
 	_refresh_name()
 	_apply_orientation()
@@ -616,7 +608,7 @@ func _on_velocity_toggled(on: bool) -> void:
 		_grid.velocity_mode = on
 		if on:
 			_pan_btn.set_pressed_no_signal(false)
-			_pan_designer.hide()
+			_grid.show_pan = false
 			_loop_on_for_drawing()
 		else:
 			_loop_off_after_drawing()
@@ -625,25 +617,26 @@ func _on_velocity_toggled(on: bool) -> void:
 		if on:
 			_pan_btn.set_pressed_no_signal(false)
 		_grid.velocity_mode = false
+		_grid.show_pan = false
 
 
 func _on_pan_toggled(on: bool) -> void:
 	if track == null:
 		return
 	if track.kind == "drums":
+		_grid.show_pan = on
 		if on:
 			_vel_btn.set_pressed_no_signal(false)
 			_grid.velocity_mode = false
-			_pan_designer.open_for(track)
 			_loop_on_for_drawing()
 		else:
-			_pan_designer.hide()
 			_loop_off_after_drawing()
 	else:
 		_roll.show_pan = on
 		if on:
 			_vel_btn.set_pressed_no_signal(false)
 			_roll.show_velocity = false
+		_grid.show_pan = false
 
 
 ## Move and copy are exclusive: turning one on turns the other off.
@@ -741,7 +734,7 @@ func _unhandled_input(e: InputEvent) -> void:
 
 func _refresh_len_label() -> void:
 	if track != null:
-		_len_btn.text = "     %d" % track.grid_steps()
+		_len_btn.text = "%d" % track.grid_steps()
 
 
 ## Hear the loop while drawing on it (velocity, pan): start the loop preview unless it is playing.

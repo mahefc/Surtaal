@@ -2,7 +2,6 @@
 # https://github.com/sgossner/VSCO-2-CE) into assets/samples/ and writes data/instruments/sampled.json.
 # Every recorded pitch is kept, and every velocity layer (v1 soft, v2 loud; the upright piano's mf / f).
 # Usage:  powershell -File tools/fetch_samples.ps1 -Project C:\path\to\Surtaal
-# Afterwards run tools/fetch_salamander.py to add the Salamander grand (CC-BY 3.0), which is merged into sampled.json.
 param([string]$Project = (Split-Path -Parent $PSScriptRoot))
 
 $ErrorActionPreference = "Stop"

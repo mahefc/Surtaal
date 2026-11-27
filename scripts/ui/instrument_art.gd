@@ -35,10 +35,10 @@ static func kind_of(def: InstrumentDef) -> String:
 		"frame": ["parai", "kanjira", "frame_drum", "tambourine"],
 		"pot": ["ghatam"],
 		"gong": ["gong", "agogo"],
-		"cymbal": ["cymbal", "hat"],
+		"cymbal": ["cymbal", "hat", "ride", "crash"],
 		"choir": ["choir"],
 		"burst": ["epic_hit", "trailer_hit"],
-		"drum": ["tabla", "dhol", "thavil", "mridangam", "taiko", "kick", "snare", "bassdrum", "conga", "darbuka", "cajon", "bongo", "woodblock"],
+		"drum": ["tabla", "dhol", "thavil", "mridangam", "taiko", "kick", "snare", "bassdrum", "conga", "darbuka", "cajon", "bongo", "woodblock", "tom", "rim"],
 		"synth": ["synth", "pad", "lead", "bass808"],
 	}
 	for k in tokens:

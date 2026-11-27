@@ -142,7 +142,7 @@ var _rows := 12
 var _row_h := 24.0
 var _drag := {}  # {mode: "move"|"resize"|"draw"|"vel"|"pan"|"box"|"group", ...}
 var _preview_id := -1
-var _pan_last := Vector2(-1, 0)  # last pan stroke sample (step, pan)
+var _pan_last_px := Vector2(-1, -1)  # last freehand pan sample in lane pixels
 
 
 func _init() -> void:
@@ -188,7 +188,9 @@ func visible_notes() -> Array:
 
 ## Height reserved under the note rows for velocity or pan (0 when both hidden).
 func _lane_h() -> float:
-	return VEL_H if show_velocity or show_pan else 0.0
+	if show_pan:
+		return 56.0  # taller for freehand pan drawing
+	return VEL_H if show_velocity else 0.0
 
 
 ## How many note rows fit at a readable height.
@@ -287,11 +289,11 @@ func _draw() -> void:
 		draw_line(Vector2(x, 0), Vector2(x, note_bottom), Color(1, 1, 1, alpha), 1.0)
 
 	if lh > 0.0:
-		var lr := _lane_rect()
-		draw_rect(lr, Color("10131a"))
-		draw_line(Vector2(lr.position.x, lr.position.y), Vector2(lr.end.x, lr.position.y), Color(1, 1, 1, 0.06), 1.0)
+		var strip := Rect2(0, size.y - lh, size.x, lh)
+		draw_rect(strip, Color("10131a"))
+		draw_line(Vector2(0, strip.position.y), Vector2(size.x, strip.position.y), Color(1, 1, 1, 0.06), 1.0)
 		if show_pan:
-			_draw_pan_lane(lr, font)
+			_draw_pan_lane(_lane_rect(), font)
 	if track == null:
 		return
 	# keys being played right now: light up their row and name
@@ -454,10 +456,15 @@ func _begin(pos: Vector2) -> void:
 			_set_vel(pos)
 			_changed()
 		return
-	if show_pan and _lane_rect().has_point(pos):
-		_pan_last = Vector2(-1, 0)
-		_drag = {"mode": "pan"}
-		_put_pan(pos)
+	if show_pan and pos.y >= size.y - _lane_h():
+		if _pan_reset_rect().has_point(pos):
+			_reset_pan()
+			return
+		if _lane_rect().has_point(pos):
+			_pan_last_px = Vector2(-1, -1)
+			_drag = {"mode": "pan"}
+			_put_pan(pos)
+			return
 		return
 	if pos.x < LABEL_W or pos.y > note_bottom:
 		return
@@ -651,11 +658,11 @@ func _end() -> void:
 		queue_redraw()
 		return
 	if _drag.get("mode", "") == "pan":
-		track.pan_curve.sort_custom(func(a, b): return a[0] < b[0])
+		track.pan_curve.sort_custom(func(a, b): return float(a[0]) < float(b[0]))
 		TrackManager.apply_mix()
 		_changed()
 		_drag = {}
-		_pan_last = Vector2(-1, 0)
+		_pan_last_px = Vector2(-1, -1)
 		queue_redraw()
 		return
 	if _drag.get("mode", "") == "box":
@@ -691,61 +698,85 @@ func _set_vel(pos: Vector2) -> void:
 	_drag.note.vel = clampf(1.0 - (pos.y - vr.position.y) / VEL_H, 0.05, 1.0)
 
 
-func _draw_pan_lane(lr: Rect2, font: Font) -> void:
-	draw_line(Vector2(lr.position.x, lr.position.y + lr.size.y * 0.5), Vector2(lr.end.x, lr.position.y + lr.size.y * 0.5), Color(1, 1, 1, 0.2), 1.0)
-	draw_string(font, Vector2(6, lr.position.y + 14), "R", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, StudioTheme.DIM)
-	draw_string(font, Vector2(6, lr.end.y - 4), "L", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, StudioTheme.DIM)
+func _pan_reset_rect() -> Rect2:
+	var lh := _lane_h()
+	var mid_y := size.y - lh * 0.5
+	return Rect2(4, mid_y - 10, LABEL_W - 10, 20)
+
+
+func _reset_pan() -> void:
 	if track == null:
 		return
-	var base := base_step()
-	var cw := _cw()
+	track.pan_curve.clear()
+	TrackManager.apply_mix()
+	_changed()
+	queue_redraw()
+
+
+func _draw_pan_lane(lr: Rect2, font: Font) -> void:
+	# Left gutter: R / L + reset. Right: freehand stroke (smooth curve, no dots).
+	draw_line(Vector2(lr.position.x, lr.position.y + lr.size.y * 0.5), Vector2(lr.end.x, lr.position.y + lr.size.y * 0.5), Color(1, 1, 1, 0.18), 1.0)
+	draw_string(font, Vector2(6, lr.position.y + 12), "R", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, StudioTheme.DIM)
+	draw_string(font, Vector2(6, lr.end.y - 4), "L", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, StudioTheme.DIM)
+	var reset := _pan_reset_rect()
+	draw_rect(reset, StudioTheme.PANEL_HI)
+	Icons.draw(self, "trash", reset.get_center(), 7.0, StudioTheme.DIM)
+	if track == null:
+		return
+	var base := float(base_step())
+	var span := float(steps)
 	var col := accent
 	var pts: Array = []
 	for p in track.pan_curve:
-		var s := int(p[0])
-		if s >= base and s < base + steps:
+		var s := float(p[0])
+		if s >= base - 0.01 and s <= base + span + 0.01:
 			pts.append(p)
-	pts.sort_custom(func(a, b): return a[0] < b[0])
+	pts.sort_custom(func(a, b): return float(a[0]) < float(b[0]))
 	if pts.is_empty():
 		var y := lr.position.y + (0.5 - track.pan * 0.5) * lr.size.y
-		draw_line(Vector2(lr.position.x, y), Vector2(lr.end.x, y), col.darkened(0.25), 2.0)
+		draw_line(Vector2(lr.position.x, y), Vector2(lr.end.x, y), Color(col, 0.55), 2.0)
 	else:
 		var line := PackedVector2Array()
 		for p in pts:
-			var x := LABEL_W + (float(p[0]) - base + 0.5) * cw
+			var x := lr.position.x + ((float(p[0]) - base) / span) * lr.size.x
 			var y := lr.position.y + (0.5 - float(p[1]) * 0.5) * lr.size.y
 			line.append(Vector2(x, y))
-		if line.size() > 1:
-			draw_polyline(line, col, 2.5, true)
-		for pt in line:
-			draw_circle(pt, 2.2, col)
+		if line.size() == 1:
+			draw_circle(line[0], 2.0, col)
+		elif line.size() > 1:
+			draw_polyline(line, col, 2.8, true)
 
 
+## Freehand pan: sample densely along the finger path (not one point per grid bar).
 func _put_pan(pos: Vector2) -> void:
 	if track == null:
 		return
 	var lr := _lane_rect()
-	var step := clampi(int(floor((pos.x - LABEL_W) / _cw())) + base_step(), 0, _total() - 1)
-	var pan := clampf((0.5 - (pos.y - lr.position.y) / maxf(lr.size.y, 1.0)) * 2.0, -1.0, 1.0)
-	if absf(pan) < 0.05:
-		pan = 0.0
-	var from := step
-	var p0 := pan
-	if _pan_last.x >= 0.0:
-		from = int(_pan_last.x)
-		p0 = _pan_last.y
-	var a := mini(from, step)
-	var b := maxi(from, step)
-	for k in range(a, b + 1):
-		var f := 1.0 if b == a else float(k - from) / float(step - from) if step != from else 1.0
-		_set_pan_point(k, lerpf(p0, pan, clampf(f, 0.0, 1.0)))
-	_pan_last = Vector2(step, pan)
+	var clamped := Vector2(clampf(pos.x, lr.position.x, lr.end.x), clampf(pos.y, lr.position.y, lr.end.y))
+	if _pan_last_px.x < 0.0:
+		_sample_pan_px(clamped, lr)
+	else:
+		var dist := clamped.distance_to(_pan_last_px)
+		var n := maxi(1, int(ceil(dist / 2.0)))  # ~every 2px along the stroke
+		for i in n + 1:
+			_sample_pan_px(_pan_last_px.lerp(clamped, float(i) / float(n)), lr)
+	_pan_last_px = clamped
 	queue_redraw()
 
 
-func _set_pan_point(step: int, pan: float) -> void:
+func _sample_pan_px(pos: Vector2, lr: Rect2) -> void:
+	var base := float(base_step())
+	var span := float(steps)
+	var t := clampf((pos.x - lr.position.x) / maxf(lr.size.x, 1.0), 0.0, 1.0)
+	var step_f := snappedf(base + t * span, 0.05)
+	var pan := clampf((0.5 - (pos.y - lr.position.y) / maxf(lr.size.y, 1.0)) * 2.0, -1.0, 1.0)
+	_set_pan_point(step_f, pan)
+
+
+func _set_pan_point(step: float, pan: float) -> void:
 	for i in track.pan_curve.size():
-		if int(track.pan_curve[i][0]) == step:
+		if absf(float(track.pan_curve[i][0]) - step) < 0.03:
+			track.pan_curve[i][0] = step
 			track.pan_curve[i][1] = pan
 			return
 	track.pan_curve.append([step, pan])

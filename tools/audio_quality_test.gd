@@ -15,7 +15,7 @@ func _initialize() -> void:
 	var ex: Node = root.get_node("ExportManager")
 	pm.new_project()
 	tr.bpm = 100.0
-	var piano: Track = tm.add_track("salamander_grand")
+	var piano: Track = tm.add_track("grand_piano")
 	var pad: Track = tm.add_track("violins")
 	var bass: Track = tm.add_track("cellos")
 	var chords := [[48, 52, 55, 60], [45, 52, 57, 60], [41, 48, 53, 57], [43, 50, 55, 59]]

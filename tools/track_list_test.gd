@@ -49,7 +49,7 @@ func _initialize() -> void:
 		await process_frame
 	pm.new_project()
 
-	var a: Track = tm.add_track("piano")
+	var a: Track = tm.add_track("grand_piano")
 	a.add_note(0, 4, 60, 0.8)
 	a.add_note(8, 4, 64, 0.8)
 	var b: Track = tm.add_track("bansuri")

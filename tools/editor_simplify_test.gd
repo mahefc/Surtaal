@@ -34,7 +34,7 @@ func _initialize() -> void:
 	for i in 5:
 		await process_frame
 	pm.new_project()
-	var t: Track = tm.add_track("piano")
+	var t: Track = tm.add_track("grand_piano")
 	scene._open_editor(t)
 	await process_frame
 	await process_frame

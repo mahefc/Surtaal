@@ -38,7 +38,7 @@ func _ready() -> void:
 	chip_row.add_theme_constant_override("separation", 6)
 	chip_scroll.add_child(chip_row)
 
-	var preferred := ["All", "Orchestra", "Keys", "Western", "Indian", "Chinese", "Cinematic", "Drums", "World"]
+	var preferred := ["All", "Orchestra", "Keys", "Drums"]
 	var cats := ["All"]
 	for c in preferred:
 		if c != "All" and InstrumentManager.categories().has(c) and not cats.has(c):

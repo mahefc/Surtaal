@@ -23,7 +23,7 @@ func _initialize() -> void:
 
 	# ---- song length is automatic, no bars to set
 	_check("empty song has a default length (4 bars)", tm.song_steps == 64)
-	var a: Track = tm.add_track("piano")
+	var a: Track = tm.add_track("grand_piano")
 	a.add_note(0, 4, 60, 0.8)
 	a.add_note(20, 4, 64, 0.8)
 	tm.notify_changed(a)
